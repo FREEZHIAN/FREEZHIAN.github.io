@@ -1,0 +1,420 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>c语言 | 从前慢</title><meta name="keywords" content="c"><meta name="author" content="至安"><meta name="copyright" content="至安"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第一章数据类型、运算符与表达式 浮点型与字符型 #include &lt;stdio.h&gt;int main()&amp;#123;	float f &#x3D; 3e-3;&#x2F;&#x2F;e代表10的幂次	printf(&quot;输出浮点数 %f\n&quot;, f);&#x2F;&#x2F;%f就是以浮点形式输出对应数据	char c &#x3D; &amp;#x27;a&amp;#x27;;&#x2F;&#x2F;定义一个字符型变量，并赋值为 &amp;#x27;a&amp;#x27;	pri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c语言">
+<meta property="og:url" content="http://example.com/2022/09/11/c%E8%AF%AD%E8%A8%80/index.html">
+<meta property="og:site_name" content="从前慢">
+<meta property="og:description" content="第一章数据类型、运算符与表达式 浮点型与字符型 #include &lt;stdio.h&gt;int main()&amp;#123;	float f &#x3D; 3e-3;&#x2F;&#x2F;e代表10的幂次	printf(&quot;输出浮点数 %f\n&quot;, f);&#x2F;&#x2F;%f就是以浮点形式输出对应数据	char c &#x3D; &amp;#x27;a&amp;#x27;;&#x2F;&#x2F;定义一个字符型变量，并赋值为 &amp;#x27;a&amp;#x27;	pri">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/any3.webp">
+<meta property="article:published_time" content="2022-09-11T02:02:26.000Z">
+<meta property="article:modified_time" content="2022-09-12T12:34:20.409Z">
+<meta property="article:author" content="至安">
+<meta property="article:tag" content="c">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/any3.webp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/09/11/c%E8%AF%AD%E8%A8%80/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 至安","link":"链接: ","source":"来源: 从前慢","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'c语言',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-12 20:34:20'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/css/custom1.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/u.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/any3.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">从前慢</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">c语言</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-11T02:02:26.000Z" title="发表于 2022-09-11 10:02:26">2022-09-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-12T12:34:20.409Z" title="更新于 2022-09-12 20:34:20">2022-09-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%80%83%E7%A0%94/">考研</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="c语言"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="第一章数据类型、运算符与表达式">第一章数据类型、运算符与表达式</h2>
+<h3 id="浮点型与字符型">浮点型与字符型</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">float</span> f = <span class="hljs-number">3e-3</span>;<span class="hljs-comment">//e代表10的幂次</span><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输出浮点数 %f\n&quot;</span>, f);<span class="hljs-comment">//%f就是以浮点形式输出对应数据</span><br>	<span class="hljs-type">char</span> c = <span class="hljs-string">&#x27;a&#x27;</span>;<span class="hljs-comment">//定义一个字符型变量，并赋值为 &#x27;a&#x27;</span><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c\n&quot;</span>, c);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, c);<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre><code>      * e代表10的幂次, 3e3 表示 $$3 * 10^3$$
+      * 浮点型占四个字节,字符型占一个字节
+      * 小写字母与大写字母的差值是32,小写字母减去32便得到大写字母
+      * ASCII码中0的大小为48，因此两者相互转换要减去48
+</code></pre>
+<h3 id="混合运算">混合运算</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> i = <span class="hljs-number">5</span>;<br>	<span class="hljs-type">float</span> j = i / <span class="hljs-number">2</span>;<span class="hljs-comment">//j输出的是2</span><br>	<span class="hljs-type">float</span> k = (<span class="hljs-type">float</span>)i/<span class="hljs-number">2</span> ;<span class="hljs-comment">//k输出的是2.5</span><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;j=%f,k=%f\n&quot;</span>, j,k);<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>强制类型转换  (类型)变量</li>
+</ul>
+<h3 id="scanf缓冲区">scanf缓冲区</h3>
+<p>​</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> _CRT_SECURE_NO_WARNINGS</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-comment">//缓冲区为空的时候，scanf才会卡主（阻塞）</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> i;<br>	<span class="hljs-type">char</span> c;<br>	<span class="hljs-type">float</span> f;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;i);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;i=%d\n&quot;</span>, i);<br>	<span class="hljs-comment">//scanf(&quot;%c&quot;, &amp;c);</span><br>	<span class="hljs-comment">//printf(&quot;c=%c\n&quot;, c);</span><br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%f&quot;</span>, &amp;f);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;f=%f\n&quot;</span>, f);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>​      <img src="/img/%E7%AC%AC%E4%BA%8C%E7%AB%A01.png" alt="第二章1"></p>
+<ul>
+<li>若不注释掉11 12行，便会出现以上结果。原因是我们向标准输入缓冲区中放入的字符为’5\n’，输入’\n’(回车)后，scanf函数才开始匹配, scanf函数中的%d 匹配整型数5，然后放入变量i中，接着进行打印输出，这时’\n’仍然在标准输入缓冲区(stdin)内，第二个scanf函数为scanf(“%c”, &amp;c);正好匹配。也就是缓冲区内会存留着&quot;\n&quot;.</li>
+</ul>
+<h3 id="scanf混合输入">scanf混合输入</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> _CRT_SECURE_NO_WARNINGS</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-comment">//一个scanf读多种类型的数据</span><br><span class="hljs-comment">//混合输入时每次在%c之前需要加入一个空格</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> i;<br>	<span class="hljs-type">char</span> c;<br>	<span class="hljs-type">float</span> f;<br>	<span class="hljs-type">int</span> ret;<br>	ret=<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %c%f&quot;</span>, &amp;i, &amp;c, &amp;f);<br>	<span class="hljs-comment">//printf(&quot;i=%d,c=%c,f=%f\n&quot;, i, c, f);</span><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%0.2f\n&quot;</span>, i + c + f);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>混合输入时每次在%c之前需要加入一个空格(避免一切问题)</li>
+</ul>
+<h3 id="printf控制输出格式">printf控制输出格式</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-comment">//printf控制输出格式</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;name=%s,age=%-3d,sex=%c,score=%5.2f\n&quot;</span>, <span class="hljs-string">&quot;longge&quot;</span>, <span class="hljs-number">34</span>, <span class="hljs-string">&#x27;m&#x27;</span>, <span class="hljs-number">98.5</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>score = %5.2f</code>  5表示占的空格的个数， 2表示小数点后两位</li>
+<li><code>age= %-3d</code> 负号表示左对齐， 没有负号就是右对齐</li>
+</ul>
+<h3 id="运算符">运算符</h3>
+<ul>
+<li>
+<p>最重要的就是记住优先级</p>
+<p><img src="/img/%E7%AC%AC%E4%BA%8C%E7%AB%A02.png" alt="第二章2"></p>
+</li>
+</ul>
+<p>​                    <img src="\img\第二章3.png" alt="第二章3" style="zoom:67%;" /></p>
+<h3 id="表达式">表达式</h3>
+<ul>
+<li>逗号表达式，最后为真就为真</li>
+<li>如while(条件1，条件2).执行与否，取决于条件2的真假</li>
+</ul>
+<h2 id="第二章选择与循环">第二章选择与循环</h2>
+<p>​           <s>这章真的是学烂了</s>😂</p>
+<h3 id="for循环">for循环</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> _CRT_SECURE_NO_WARNINGS</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-comment">//从1加到100</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> i, total;<br>	<span class="hljs-comment">//for语句中只能有两个分号</span><br>	<span class="hljs-keyword">for</span> (i = <span class="hljs-number">1</span>, total = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">100</span>; i++)<span class="hljs-comment">//for循环后不能加分号</span><br>	&#123;<br>		total = total + i;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;total=%d\n&quot;</span>, total);<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>for(表达式1;表达式2;表达式3) 语句;  执行流程如下</li>
+<li>(1) 先求解表达式1</li>
+<li>(2)求解表达式2，若其值为真，则先执行for语句中指定的内嵌语句，后执行第(3)步，若其值为假，则结束循环，转到第(5)步</li>
+<li>(3)求解表达式3</li>
+<li>(4)转回第(2)步继续执行</li>
+<li>(5) 循环结束</li>
+</ul>
+<h3 id="continue-与-break">continue 与 break</h3>
+<p><strong>continue:</strong>   跳过循环体中下面尚未执行的语句</p>
+<p><strong>break:</strong> 结束循环</p>
+<h2 id="第三章数组">第三章数组</h2>
+<h3 id="一维数组">一维数组</h3>
+<p>​     <s>一个例子就能讲明白</s> 🎉</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-comment">//打印数组里的每一个元素,数组在传递时，元素个数传递不过去</span><br><span class="hljs-comment">//print是我们自定义的一个函数</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">print</span><span class="hljs-params">(<span class="hljs-type">int</span> b[], <span class="hljs-type">int</span> len)</span><br>&#123;<br>	<span class="hljs-type">int</span> i;<br>	<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; len; i++)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a[%d]=%d\n&quot;</span>, i, b[i]);<br>	&#125;<br>	b[<span class="hljs-number">4</span>] = <span class="hljs-number">20</span>;<span class="hljs-comment">//在子函数中修改数组元素</span><br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-comment">//定义数组就是写一个变量名，后面加上方括号，方括号内写上整型常量</span><br>	<span class="hljs-comment">//定义数组的一瞬间，数组占据的空间大小就确定下来了</span><br>	<span class="hljs-type">int</span> j = <span class="hljs-number">10</span>;<br>	<span class="hljs-type">int</span> a[<span class="hljs-number">5</span>] = &#123; <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span> &#125;;<br>	<span class="hljs-type">int</span> i = <span class="hljs-number">3</span>;<br>	<span class="hljs-comment">//a[5] = 20;//访问越界，访问了不属于你自己的空间</span><br>	<span class="hljs-comment">//a[6] = 21;</span><br>	<span class="hljs-comment">//a[7] = 22;</span><br>	<span class="hljs-comment">//printf(&quot;j=%d\n&quot;, j);</span><br>	print(a, <span class="hljs-keyword">sizeof</span>(a) / <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));<span class="hljs-comment">//调用函数</span><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a[4]=%d\n&quot;</span>, a[<span class="hljs-number">4</span>]);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>sizeof()  不是函数，是一个操作符。 它可以计算出变量所占内存大小
+<ul>
+<li>在自己写的函数内更改数组内容，是因为把数组首地址传过去了</li>
+</ul>
+</li>
+</ul>
+<h3 id="字符数组">字符数组</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> _CRT_SECURE_NO_WARNINGS</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-comment">//初始化字符数组时，一定要让字符数组的大小比看到的字符串的长度多1</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">char</span> c[<span class="hljs-number">6</span>] = &#123; <span class="hljs-string">&#x27;h&#x27;</span>,<span class="hljs-string">&#x27;e&#x27;</span>,<span class="hljs-string">&#x27;l&#x27;</span>,<span class="hljs-string">&#x27;l&#x27;</span>,<span class="hljs-string">&#x27;o&#x27;</span> &#125;;<br>	<span class="hljs-type">char</span> d[<span class="hljs-number">5</span>] = <span class="hljs-string">&quot;how&quot;</span>;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s----%s\n&quot;</span>, c, d);<span class="hljs-comment">//printf的%s，对应后面要写的是字符数组名，字符串常量</span><br>	<span class="hljs-type">char</span> e[<span class="hljs-number">20</span>],f[<span class="hljs-number">20</span>];<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s%s&quot;</span>, e,f);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s---%s\n&quot;</span>, e,f);<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>初始化字符数组时，一定要让字符数组的大小比看到的字符串的长度多1</li>
+<li>scanf 读取字符串时会忽略空格和换行</li>
+<li>scanf 读取字符串时不需要取地址符</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/2019030715002029.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY3MDgwMg==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<pre><code>      * gets() 函数可以读取含有空格的字符串， 直到遇到换行符或EOF(-1) 结束
+      * puts()函数可以输出一个字符串
+</code></pre>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> _CRT_SECURE_NO_WARNINGS</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><br><span class="hljs-comment">//char* strcpy(char* to, const char* from); 有const修饰代表这个地方可以放一个字符串常量</span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">char</span> c[<span class="hljs-number">20</span>] = <span class="hljs-string">&quot;wangdao&quot;</span>;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;数组c内字符串的长度=%d\n&quot;</span>, <span class="hljs-built_in">strlen</span>(c));<br>	<span class="hljs-type">char</span> d[<span class="hljs-number">20</span>];<br>	<span class="hljs-built_in">strcpy</span>(d, <span class="hljs-string">&quot;study&quot;</span>);<br>	<span class="hljs-built_in">puts</span>(d);<br>	<span class="hljs-comment">//下面是看strcmp,两个字符串比较，是比较对应字符位置的ascii码值</span><br>	<span class="hljs-type">int</span> ret = <span class="hljs-built_in">strcmp</span>(<span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-string">&quot;how&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;两个字符串比较后的结果=%d\n&quot;</span>, ret);<br>	<span class="hljs-comment">//下面看strcat,拼接两个字符串,目标数组要能够容纳拼接后的字符串</span><br>	<span class="hljs-built_in">strcat</span>(c, d);<br>	<span class="hljs-built_in">puts</span>(c);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>(复制)srycpy() <code> char* strcpy(char* to, const char*from)</code> 因此后者可直接放一个字符串</p>
+</li>
+<li>
+<p>(比较)strcmp()  <code> int strcmp(const char* str1, const char *str2)</code></p>
+<p>若str1 大于 str2，返回一个大于0的数</p>
+<p>若str1 小于 str2,    返回一个小于0的数</p>
+<p>若str1 等于 str2,    返回0</p>
+</li>
+<li>
+<p>(拼接)strcat()<code>char* strcat(char* str1, const char *str2)</code> 后者拼接到前者 ❗拼接之后的长度要小于前者的数组长度</p>
+</li>
+</ul>
+<h2 id="第四章指针">第四章指针</h2>
+<h3 id="指针的定义">指针的定义</h3>
+<p>内存区域中的每字节都对应一个编号，这个编号就是地址。                                                                         直接访问：按变量地址存取变量值的方式间接访问：将变量的地址存放到另一个变量中，通过访问另一个变量，来间接访问(如图，将i的地址存到i_pointer中)              指针：一个变量的地址称为该变量的指针(如图a, 2000 就是 i 的地址，称为指针) 指针变量： 专门用来存放另一变量的地址(如图，i_pointer为指针变量)</p>
+<img src="\img\c语言指针1.png" alt="c语言指针1" style="zoom:50%;" />
+<h3 id="取地址与取值">取地址与取值</h3>
+<p>取地址操作符为&amp;,也称引用，通过该操作符我们可以获取一个变量的地址值;       取值操作符为*，也称解引用，通过该操作符我们可以得到一个地址对应的数据.  如图所示，我们通过&amp;i 获取整型变量i的地址值，然后对整型指针变量p进行初始化,  p中存储的是整型变量i的地址值，❗**通过<code>*p</code>便可以的到p中存放的值，**所以通过第9行的p就可以获取整型变量i的值. p中存储的是一个绝对地址值，那为什么取值时会获取4字节大小的空间呢?这是因为p为整型变量指针，每个 int型数据占用4字节大小的空间，所以p在解引用时会访问4字节大小的空间，同时以整型值对内存进行解析.</p>
+<p>``<img src="/img/c%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%882.png" alt="c语言指针2"></p>
+<p><strong>注</strong>❗</p>
+<ul>
+<li>
+<p>指针变量前面的&quot;*&quot;表示该变量为指针型变量</p>
+<p><code>float *pointer</code></p>
+<p>指针变量名是pointer,而不是*pointer</p>
+</li>
+<li>
+<p>声明多个指针变量</p>
+<p><code>int *a, *b, *c</code></p>
+</li>
+</ul>
+<h3 id="指针的偏移">指针的偏移</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> a[<span class="hljs-number">5</span>] = &#123; <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> &#125;;<br>	<span class="hljs-type">int</span>* p;<br>	<span class="hljs-type">int</span> i;<br><br>	p = a;<br><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++)<br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%3d&quot;</span>, *(p + i));<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n------------\n&quot;</span>);<br>	<br>	p = &amp;a[<span class="hljs-number">4</span>];<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) <span class="hljs-comment">//逆序输出</span><br>	&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%3d&quot;</span>, *(p - i));<br>	&#125;<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>​      数组名中存储着起始地址，其类型为整型指针，所以可以将其赋值给整型指针变量p.其次，指针变量加1后，偏移的长度是其基类型的长度</p>
+<h3 id="指针的自增自减">指针的自增自减</h3>
+<p>(主要是运算符优先级的问题)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-comment">//重要程度低一些,不理解直接放弃，不重要</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> a[<span class="hljs-number">3</span>] = &#123; <span class="hljs-number">2</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span> &#125;;<br>	<span class="hljs-type">int</span>* p;<br>	<span class="hljs-type">int</span> j;<br>	p = a;<span class="hljs-comment">//让指针变量p，指向数组的开头</span><br>	j = *p++;<span class="hljs-comment">//j=*p;(*p)++,第一步：任何时候都是把后加加去掉，第二步另外一个运算符看优先级是否高于++</span><br>    <span class="hljs-comment">//j = p[0]++;//j=p[0];p[0]++;</span><br>    <span class="hljs-comment">//j = (*p)++;// j = (*p); (*p)++;</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a[0]=%d,j=%d,*p=%d\n&quot;</span>, a[<span class="hljs-number">0</span>], j, *p);<span class="hljs-comment">//2 2 7</span><br>                                                <span class="hljs-comment">//!3 2 3!</span><br>                                                <span class="hljs-comment">//3 2 3</span><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>j = * p++  </code> .  * 和 ++ 优先级相同，自右向左算，p++ 是先返回p原本的地址值, 再对p增加1. 也就是 j = * p,  p++(让p指向的地址向后移动一个int类型的地址单位)</li>
+<li><code>j = p[0]++</code>.  [] 的优先级 高于 ++, 先算 p[0], 再算 p[0]++. 同理 p[0]++ 先返回 p[0], 然后再++; 也就是 j = p[0],  p[0]++</li>
+<li><code>j = (*p)++</code>  () 的优先级 高于 ++,  先算 * p, 再算 (* p)++; 也就是 j = (*p), ( * p)++</li>
+<li>后两个 p 都是指向 a[0] 的, ++ 都是值变化，而不是地址变化</li>
+</ul>
+<h3 id="指针与一维数组">指针与一维数组</h3>
+<p>一维数组在函数调用进行传递时，它的长度子函数无法知道的原因：一维数组名中存储的是数组的首地址。                                                                                                   通过函数调用对数组进行操作: 通过指针变量，进行取值操作</p>
+<h3 id="指针动态内存申请">指针动态内存申请</h3>
+<p><strong>malloc函数</strong>: 在执行<code>#include&lt;stdlib.h&gt;   void * malloc(size_t size)</code>时;需要给 malloc 传递的参数是一个整型变量,返回值为 void* 类型指针, void* 类型的指针只能用来存储一个地址而不能进行偏移, 因为malloc 不知道我们申请的空间用来存放什么类型的数据，所以需要进行强制类型转换。</p>
+<img src="\img\c语言指针3.png" alt="c语言指针3" style="zoom:50%;" />
+<ul>
+<li>堆的效率比栈的效率低</li>
+<li>堆的申请和释放需要自行管理，释放的函数 为 void free(void *ptr),其传入的参数为void类型指针，任何指针均可自动转为void * 类型指针,所以我们把p传递给free函数时,不需要强制类型转换.p的地址值必须是malloc当时返回的地址值不能进行偏移，也就是在malloc和 free之间不能进行p++等改变变量p的操作，原因是申请一段堆内存空间时，内核帮我们记录的是起始地址和大小，所以释放时内核用对应的首地址进行匹配，匹配不上时，进程就会崩溃。如果要偏移进而存储数据，那么可以定义两个指针变量来解决。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">char</span>* <span class="hljs-title function_">print_stack</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">char</span> c[<span class="hljs-number">17</span>] = <span class="hljs-string">&quot;I am print_stack&quot;</span>;<br>	<span class="hljs-built_in">puts</span>(c);<span class="hljs-comment">//能正常打印</span><br>	<span class="hljs-keyword">return</span> c;<br>&#125;<br><br><span class="hljs-type">char</span>* <span class="hljs-title function_">print_malloc</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">char</span>* p = (<span class="hljs-type">char</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-number">30</span>);<br>	<span class="hljs-built_in">strcpy</span>(p, <span class="hljs-string">&quot;I am print_malloc&quot;</span>);<br>	<span class="hljs-built_in">puts</span>(p);<br>	<span class="hljs-keyword">return</span> p;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">char</span>* p;<br>	p = print_stack();<span class="hljs-comment">//栈空间会随着函数的执行结束而释放,相当于p=c</span><br>	<span class="hljs-comment">//puts(p);//打印不出来</span><br>	p = print_malloc();<span class="hljs-comment">//堆空间不会随子函数的结束而释放，必须自己free</span><br>	<span class="hljs-built_in">puts</span>(p);<br>	<span class="hljs-built_in">free</span>(p);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>栈空间会随着函数的执行结束而释放</li>
+<li>堆空间不会随子函数的结束而释放，必须自己free</li>
+</ul>
+<h3 id="字符指针与字符数组">字符指针与字符数组</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">char</span>* p = <span class="hljs-string">&quot;hello&quot;</span>;  <span class="hljs-comment">//把字符串型常量&quot;hello&quot;的首地址赋给p</span><br>	<span class="hljs-type">char</span> c[<span class="hljs-number">10</span>] = <span class="hljs-string">&quot;hello&quot;</span>;  <span class="hljs-comment">//等价于strcpy(c,&quot;hello&quot;);</span><br>	c[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;H&#x27;</span>;<br>	<span class="hljs-comment">//p[0]=&#x27;H&#x27;;  //不可以对常量区数据进行修改</span><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;c[0]=%c\n&quot;</span>, c[<span class="hljs-number">0</span>]);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;p[0]=%c\n&quot;</span>, p[<span class="hljs-number">0</span>]);<br>	p = <span class="hljs-string">&quot;world&quot;</span>;  <span class="hljs-comment">//将字符串world的地址赋给p</span><br>	<span class="hljs-comment">//c=&quot;world&quot;;  //非法</span><br>	<span class="hljs-built_in">puts</span>(p);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<img src="\img\c语言指针4.png" alt="c语言指针4" style="zoom: 75%;" />
+<ul>
+<li>字符串型常量存储在数据区中的常量区，这样做的好处是相同的字符串只会存储一次，常量区中的字符串不可修改，因此 p  更改不了</li>
+<li>p 是一个指针变量，因此我们可以将字符串&quot;world&quot;的首地址重新赋给p，而数组名c本身存储的就是数组的首地址，是确定的， 不可修改的。因此，如果 c = “world” 会出现错误</li>
+</ul>
+<h2 id="第五章函数">第五章函数</h2>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">至安</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/09/11/c%E8%AF%AD%E8%A8%80/">http://example.com/2022/09/11/c%E8%AF%AD%E8%A8%80/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">从前慢</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/c/">c</a></div><div class="post_share"><div class="social-share" data-image="/img/any3.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/09/12/%E7%AC%AC%E4%BA%8C%E5%91%A8%E5%A4%8D%E7%9B%98/"><img class="prev-cover" src="/img/any2.webp" onerror="onerror=null;src='/img/any3.webp'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">第二周复盘</div></div></a></div><div class="next-post pull-right"><a href="/2022/09/09/%E6%B5%8B%E8%AF%95/"><img class="next-cover" src="/img/any2.webp" onerror="onerror=null;src='/img/any3.webp'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">测试</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/u.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">至安</div><div class="author-info__description">至安，你抵达安宁了吗？</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ZHIAN"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ZHIAN" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2981115824@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://pic1.zhimg.com/v2-094497df7b05d6db0e7da8c808384fe4_r.jpg" target="_blank" title="picture"><i class="fa-solid fa-image"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">hello</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E3%80%81%E8%BF%90%E7%AE%97%E7%AC%A6%E4%B8%8E%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">第一章数据类型、运算符与表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E5%9E%8B%E4%B8%8E%E5%AD%97%E7%AC%A6%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">浮点型与字符型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B7%E5%90%88%E8%BF%90%E7%AE%97"><span class="toc-number">1.2.</span> <span class="toc-text">混合运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scanf%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="toc-number">1.3.</span> <span class="toc-text">scanf缓冲区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scanf%E6%B7%B7%E5%90%88%E8%BE%93%E5%85%A5"><span class="toc-number">1.4.</span> <span class="toc-text">scanf混合输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#printf%E6%8E%A7%E5%88%B6%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.5.</span> <span class="toc-text">printf控制输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.6.</span> <span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.7.</span> <span class="toc-text">表达式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%E9%80%89%E6%8B%A9%E4%B8%8E%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.</span> <span class="toc-text">第二章选择与循环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#for%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.1.</span> <span class="toc-text">for循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#continue-%E4%B8%8E-break"><span class="toc-number">2.2.</span> <span class="toc-text">continue 与 break</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%95%B0%E7%BB%84"><span class="toc-number">3.</span> <span class="toc-text">第三章数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="toc-number">3.1.</span> <span class="toc-text">一维数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E6%95%B0%E7%BB%84"><span class="toc-number">3.2.</span> <span class="toc-text">字符数组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0%E6%8C%87%E9%92%88"><span class="toc-number">4.</span> <span class="toc-text">第四章指针</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">4.1.</span> <span class="toc-text">指针的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%96%E5%9C%B0%E5%9D%80%E4%B8%8E%E5%8F%96%E5%80%BC"><span class="toc-number">4.2.</span> <span class="toc-text">取地址与取值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E5%81%8F%E7%A7%BB"><span class="toc-number">4.3.</span> <span class="toc-text">指针的偏移</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E8%87%AA%E5%A2%9E%E8%87%AA%E5%87%8F"><span class="toc-number">4.4.</span> <span class="toc-text">指针的自增自减</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E4%B8%8E%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="toc-number">4.5.</span> <span class="toc-text">指针与一维数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%94%B3%E8%AF%B7"><span class="toc-number">4.6.</span> <span class="toc-text">指针动态内存申请</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E6%8C%87%E9%92%88%E4%B8%8E%E5%AD%97%E7%AC%A6%E6%95%B0%E7%BB%84"><span class="toc-number">4.7.</span> <span class="toc-text">字符指针与字符数组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0%E5%87%BD%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">第五章函数</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/12/%E7%AC%AC%E4%BA%8C%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第二周复盘"><img src="/img/any2.webp" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="第二周复盘"/></a><div class="content"><a class="title" href="/2022/09/12/%E7%AC%AC%E4%BA%8C%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第二周复盘">第二周复盘</a><time datetime="2022-09-12T12:29:08.000Z" title="发表于 2022-09-12 20:29:08">2022-09-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/11/c%E8%AF%AD%E8%A8%80/" title="c语言"><img src="/img/any3.webp" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="c语言"/></a><div class="content"><a class="title" href="/2022/09/11/c%E8%AF%AD%E8%A8%80/" title="c语言">c语言</a><time datetime="2022-09-11T02:02:26.000Z" title="发表于 2022-09-11 10:02:26">2022-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/09/%E6%B5%8B%E8%AF%95/" title="测试"><img src="/img/any2.webp" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="测试"/></a><div class="content"><a class="title" href="/2022/09/09/%E6%B5%8B%E8%AF%95/" title="测试">测试</a><time datetime="2022-09-09T02:41:03.000Z" title="发表于 2022-09-09 10:41:03">2022-09-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/05/%E7%AC%AC%E4%B8%80%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第一周复盘"><img src="/img/u.jpg" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="第一周复盘"/></a><div class="content"><a class="title" href="/2022/09/05/%E7%AC%AC%E4%B8%80%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第一周复盘">第一周复盘</a><time datetime="2022-09-05T12:09:27.000Z" title="发表于 2022-09-05 20:09:27">2022-09-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/05/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%84%8F%E4%B9%89/" title="人生的意义"><img src="/img/any1.webp" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="人生的意义"/></a><div class="content"><a class="title" href="/2022/09/05/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%84%8F%E4%B9%89/" title="人生的意义">人生的意义</a><time datetime="2022-09-05T07:12:30.000Z" title="发表于 2022-09-05 15:12:30">2022-09-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/any3.webp')"><div id="footer-wrap"><div class="copyright">&copy;2022 By 至安</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script src="xxxx"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
