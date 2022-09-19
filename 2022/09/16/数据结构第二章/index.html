@@ -1,0 +1,709 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>数据结构第二章 | 从前慢</title><meta name="keywords" content="数据结构"><meta name="author" content="至安"><meta name="copyright" content="至安"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第二章 线性表 顺序表(Sequence)  静态分配  初始化 typedef struct &amp;#123;    int data[MaxSize];    int length;&amp;#125;SqList;void InitList(SqList &amp;L)&amp;#123;   &#x2F;&#x2F;将所有元素设为默认初始值    for(int i &#x3D; 0; i &lt; MaxSize; i++)    &amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构第二章">
+<meta property="og:url" content="http://example.com/2022/09/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%8C%E7%AB%A0/index.html">
+<meta property="og:site_name" content="从前慢">
+<meta property="og:description" content="第二章 线性表 顺序表(Sequence)  静态分配  初始化 typedef struct &amp;#123;    int data[MaxSize];    int length;&amp;#125;SqList;void InitList(SqList &amp;L)&amp;#123;   &#x2F;&#x2F;将所有元素设为默认初始值    for(int i &#x3D; 0; i &lt; MaxSize; i++)    &amp;#">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/sea1.png">
+<meta property="article:published_time" content="2022-09-16T11:47:33.000Z">
+<meta property="article:modified_time" content="2022-09-19T06:26:20.632Z">
+<meta property="article:author" content="至安">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/sea1.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/09/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%8C%E7%AB%A0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 至安","link":"链接: ","source":"来源: 从前慢","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '数据结构第二章',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-19 14:26:20'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/css/custom1.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/u.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/sea1.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">从前慢</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">数据结构第二章</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-16T11:47:33.000Z" title="发表于 2022-09-16 19:47:33">2022-09-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-19T06:26:20.632Z" title="更新于 2022-09-19 14:26:20">2022-09-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%80%83%E7%A0%94/">考研</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">6.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>28分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="数据结构第二章"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1><strong>第二章</strong> 线性表</h1>
+<h2 id="顺序表-Sequence">顺序表(Sequence)</h2>
+<p><img src="/img/DS.2.2.png" alt="DS.2.2"></p>
+<h3 id="静态分配">静态分配</h3>
+<p><img src="/img/DS.2.1.png" alt="DS.2.1"></p>
+<h4 id="初始化">初始化</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>    <span class="hljs-type">int</span> data[MaxSize];<br>    <span class="hljs-type">int</span> length;<br>&#125;SqList;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">InitList</span><span class="hljs-params">(SqList &amp;L)</span><br>&#123;   <span class="hljs-comment">//将所有元素设为默认初始值</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; MaxSize; i++)<br>    &#123;<br>        L.data[i] = <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-comment">//长度也设置为0 </span><br>    L.length = <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>若不初始化，表内会有脏数据</li>
+</ul>
+<p>​           <img src="/img/DS.2.3.png" alt="DS.2.3"></p>
+<h4 id="增（插入）">增（插入）</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">bool</span> <span class="hljs-title function_">ListInsert</span><span class="hljs-params">(SqList &amp;L, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> e)</span><br>&#123;<br>    <span class="hljs-comment">//i的范围差点弄错</span><br>    <span class="hljs-keyword">if</span>(i &lt; <span class="hljs-number">1</span> || i &gt; L.length + <span class="hljs-number">1</span>) <span class="hljs-comment">// 判断 i 的位置是否合法</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>   <span class="hljs-comment">//差点就忘了这步</span><br>    <span class="hljs-keyword">if</span>(L.length &gt;= MaxSize) <span class="hljs-comment">//判断元素是否超过当前存储空间</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = L.length; j &gt;= i; j--)<br>    &#123;   <span class="hljs-comment">//将第 i 个位置的元素后移, 位置i对应下标也就是 i - 1</span><br>        L.data[j] = L.data[j - <span class="hljs-number">1</span>]; <br>    &#125;<br>    L.data[i - <span class="hljs-number">1</span>] = e;<br>    L.length++; <span class="hljs-comment">//长度加1</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><span class="hljs-comment">//假如插入表尾</span><br><span class="hljs-comment">/*设原有1，2，3. length = 3, i = 4;</span><br><span class="hljs-comment">然后再在表尾插入，j = 3, j &gt;= 4; 结束循环</span><br><span class="hljs-comment">同理，i = 3</span><br><span class="hljs-comment">j = 3; j &gt;= 3</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+<p><img src="/img/DS.2.5.png" alt="DS.2.5"></p>
+<p>❗ 易错点:</p>
+<pre><code> * i 表示的是位置，可以在 **1- length + 1** 的任何位置插入元素 
+ * 顺序表中的元素的下标是 **0 - length - 1**
+ * 因为是插入，所以必然会增加一个元素，所以 `j = L.length` 指向了表尾后一个元素，作为缓冲
+ * 只要不是在表尾增加元素 `j &gt;= i` 恒成立
+</code></pre>
+<p>​      时间复杂度：</p>
+<ul>
+<li>
+<p>最好情况: 在第一个位置增加元素O(1)</p>
+</li>
+<li>
+<p>最坏情况: 在最后一个位置增加元素O(n)</p>
+</li>
+<li>
+<p>平均情况: 一共 n + 1 个位置， 假设插入概率都相同，$$p = 1 / (n + 1)$$                   第一个位置移动 n 次，第二个位置移动 n - 1次… 第n+1位置移动0次,平均循环次数 = $$np + (n - 1)p + …+1*p = n * (n + 1) /2   *   1/(n + 1) = n / 2$$</p>
+<p>因此平均复杂度为 O(n)</p>
+</li>
+</ul>
+<h4 id="删（删除）">删（删除）</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">bool</span> <span class="hljs-title function_">ListDelete</span><span class="hljs-params">(SqList &amp;L, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> e)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(i &lt; <span class="hljs-number">1</span> || i &gt; L.length) <span class="hljs-comment">// 判断删除的位置是否合法</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    e = L.data[i - <span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = i; j &lt; L.length; j++)<br>    &#123;<br>        L.data[j - <span class="hljs-number">1</span>] = L.data[j];<br>    &#125;<br>    L.length--;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>​       <img src="/img/DS.2.6.png" alt="DS.2.6"></p>
+<p>❗易错点:</p>
+<ul>
+<li>删除元素位置的合法范围是1 - length</li>
+</ul>
+<p>时间复杂度:</p>
+<ul>
+<li>
+<p>最好情况: 删除最后一个元素O(1)</p>
+</li>
+<li>
+<p>最坏情况: 删除第一个元素，需移动 n - 1次 O(n)</p>
+</li>
+<li>
+<p>平均情况: 一共 n  个位置， 假设删除概率都相同，$$p = 1/n$$  第一个位置移动 n - 1 次，第二个位置移动 n - 2次… 第n位置移动0次,平均循环次数 = $$(n - 1)p + …+1*p = n * (n - 1) /2   *   1/n = (n - 1)/ 2$$</p>
+<p>因此平均复杂度为 O(n)</p>
+</li>
+</ul>
+<p><img src="/img/DS.2.4.png" alt="DS.2.4"></p>
+<h4 id="查-查找">查(查找)</h4>
+<ul>
+<li>✨  <strong>按位查找</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">GetElem</span><span class="hljs-params">(SqList L, <span class="hljs-type">int</span> i)</span><br>&#123;<br>   <span class="hljs-keyword">if</span>(i &lt; <span class="hljs-number">1</span> || i &gt; L.length + <span class="hljs-number">1</span>)<br>       <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">return</span> L.data[i - <span class="hljs-number">1</span>];<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>​       时间复杂度: O(1)</p>
+<ul>
+<li>✨  <strong>按值查找</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//按值查找</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">LocateElem</span><span class="hljs-params">(SqList L, <span class="hljs-type">int</span> e)</span><br>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; L.length; i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(L.data[i] == e)<br>            <span class="hljs-keyword">return</span> i + <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>当按值查找的元素的类型为结构体类型时，不可以直接比较，需要按照分量一一比较</li>
+</ul>
+<p>​    时间复杂度:</p>
+<ul>
+<li>
+<p>最好情况: 在第一个位置找到元素O(1)</p>
+</li>
+<li>
+<p>最坏情况: 在最后一个位置找到元素O(n)</p>
+</li>
+<li>
+<p>平均情况: 一共 n  个位置， 假设插入概率都相同，$$p = 1/n$$ 第一个位置循环1次，第二个位置循环2次，第n个位置循环n 次,平均循环次数 = $$1*p + …+ (n - 1)p + np = n * (n + 1) /2   *   1/(n + 1) = n / 2$$</p>
+<p>因此平均复杂度为 O(n)</p>
+</li>
+</ul>
+<h4 id="其他操作-判空，求表长，-输出">其他操作(判空，求表长， 输出)</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//判空</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">Empty</span><span class="hljs-params">(SqList L)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(L.length == <span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><span class="hljs-comment">//求表长</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">Length</span><span class="hljs-params">(SqList L)</span><br>&#123;<br>    <span class="hljs-keyword">return</span> L.length;<br>&#125;<br><span class="hljs-comment">//输出</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">PrintList</span><span class="hljs-params">(SqList L)</span><br>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; L.length; i++)<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, L.data[i]);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h3 id="动态分配">动态分配</h3>
+<p><strong>只有初始化和静态分配不同，多了一个<u>增加动态数组长度</u>的操作</strong></p>
+<h4 id="初始化-2">初始化</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">InitList</span><span class="hljs-params">(SqList &amp;L)</span><br>&#123;<br>    L.data = (<span class="hljs-type">int</span>*) <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span> (<span class="hljs-type">int</span>)* InitSize);<br>    L.MaxSize = InitSize; <span class="hljs-comment">//MaxSize表示当前容量</span><br>    L.length = <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="增加动态数组长度">增加动态数组长度</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">IncreaseSize</span><span class="hljs-params">(SqList &amp;L, <span class="hljs-type">int</span> len)</span><br>&#123;<br>    <span class="hljs-type">int</span> *p = L.data;<br>    L.data = (<span class="hljs-type">int</span> *) <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span> (<span class="hljs-type">int</span>)*(L.MaxSize + len));<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; L.length; i++)<br>    &#123;<br>        L.data[i] = p[i];<br>    &#125;<br>    L.MaxSize = L.MaxSize + len;<br><br>    <span class="hljs-built_in">free</span>(p);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>​       <img src="\img\DS.2.7.png" alt="DS.2.7" style="zoom:50%;" />   如左图所示，展示了上述操作的内存分配过程。</p>
+<p>​        首先用一个指针p指向L.data指向的元素，<strong>L.length还是存在</strong>。然后通过复制把元素转移到新的空间中，最后释放指针p.</p>
+<h2 id="单链表-LinkList">单链表(LinkList)</h2>
+<h4 id="定义">定义</h4>
+<p><img src="/img/DS.2.8.png" alt="DS.2.8"></p>
+<ul>
+<li>✨初始化</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//初始化带头结点的单链表</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">InitList</span><span class="hljs-params">(LinkList&amp; L)</span><br>&#123;<br>    L = (LNode*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode));<br>    <span class="hljs-keyword">if</span> (L == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    L-&gt;next = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br><span class="hljs-comment">//初始化不带头结点的单链表</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">InitList</span><span class="hljs-params">(LinkList &amp;L)</span><br>&#123;<br>    L = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>![DS.2.9]/img/DS.2.9.png)</p>
+<p>❗易错点:</p>
+<ul>
+<li>带头结点:让头指针L指向下一个正式存数据的区域，也就相当于头指针指向第零个元素</li>
+<li>不带头结点: 头指针指向的就是第一个元素</li>
+</ul>
+<h4 id="插入与删除">插入与删除</h4>
+<p><img src="/img/DS.2.10.png" alt="DS.2.10"></p>
+<ul>
+<li>✨插入</li>
+</ul>
+<p>​              <strong>按位序插入</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//按位序插入(带头结点)</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">ListInsert</span><span class="hljs-params">(LinkList&amp; L, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> e)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    LNode* p;  <span class="hljs-comment">//指针p指向当前扫描到的节点</span><br>    <span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; <span class="hljs-comment">//当前p指向的是第几个节点</span><br>    p = L;  <span class="hljs-comment">//指向头节点，头节点是第0个节点</span><br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span> &amp;&amp; j &lt; i - <span class="hljs-number">1</span>) <span class="hljs-comment">//循环找到第i-1个结点</span><br>    &#123;<br>        p = p-&gt;next;<br>        j++;<br>    &#125;<br>    <span class="hljs-comment">//return InsertNextNode(p, e);</span><br>        <span class="hljs-keyword">if</span>(p == <span class="hljs-literal">NULL</span>) <span class="hljs-comment">//i值不合法</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        LNode* s = (LNode*) <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span> (LNode));<br>        s-&gt;data = e;  <br>        s-&gt;next = p-&gt;next;<br>        p-&gt;next = s;  <span class="hljs-comment">//将节点s插入到p后</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>       <span class="hljs-comment">//✌ L -&gt; | -&gt; a1 类似</span><br>       <span class="hljs-comment">//        s           </span><br>&#125;<br><br><br><span class="hljs-comment">//按位序插入(不带头结点)</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">ListInsert</span><span class="hljs-params">(LinkList &amp;L, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> e)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(i &lt; <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-comment">//插入第一个节点的操作与其他操作不同</span><br>    <span class="hljs-keyword">if</span>(i == <span class="hljs-number">1</span>)<br>    &#123;<br>        LNode *s =(LNode*) <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span> (LNode));<br>        s-&gt;data = e;<br>        s-&gt;next = L;<br>        L = s;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>         <br>    &#125;<br>    LNode *p;<br>    <span class="hljs-type">int</span> j = <span class="hljs-number">1</span>;<br>    p = L;<br>    <span class="hljs-keyword">while</span>(p != <span class="hljs-literal">NULL</span> &amp;&amp; j &lt; i - <span class="hljs-number">1</span>)<br>    &#123;<br>        p = p-&gt;next;<br>        j++;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(p == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    LNode* s = (LNode*) <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span> (LNode));<br>    s-&gt;data = e;<br>    s-&gt;next = p-&gt;next;<br>    p-&gt;next = s;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-comment">// L -&gt;a1 -&gt; |    </span><br>   <span class="hljs-comment">//      p     s  -&gt; a2</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>两者唯一的区别就是指针L指向的元素下标不同，带头节点是0，不带是1</li>
+<li>下标j 和指针p 相互配合，j 指向插入位置的前一个元素i-1，通过改变i-1的next指针,来控制插入</li>
+</ul>
+<p>时间复杂度:</p>
+<ul>
+<li>
+<p>最好情况: 在第一个位置插入元素O(1)</p>
+</li>
+<li>
+<p>最坏情况: 在最后一个位置插入元素O(n)</p>
+</li>
+<li>
+<p>平均情况:    因此平均复杂度为 O(n)</p>
+</li>
+</ul>
+<p>​        <strong>后插</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//指定节点的后插</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">InsertNextNode</span><span class="hljs-params">(LNode* p, <span class="hljs-type">int</span> e)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (p == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    LNode* s = (LNode*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode));<br>    <span class="hljs-keyword">if</span> (s == <span class="hljs-literal">NULL</span>)  <span class="hljs-comment">//内存分配失败</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    s-&gt;data = e; <span class="hljs-comment">// 用节点s保存数据元素e</span><br>    s-&gt;next = p-&gt;next; <br>    p-&gt;next = s;     <span class="hljs-comment">//将节点S连接到P之后 </span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <br>    <span class="hljs-comment">// x -&gt;  e  -&gt; y  </span><br>    <span class="hljs-comment">// p     s   </span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>​       时间复杂度为: O(1)</p>
+<p>🐱‍🐉<strong>前插</strong>(这个操作比较费脑)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//指定节点的前插 在p节点之前插入元素e</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">InsertPriorNode</span><span class="hljs-params">(LNode* p, <span class="hljs-type">int</span> e)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (p == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    LNode* s = (LNode*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode));<br>    <span class="hljs-keyword">if</span> (s == <span class="hljs-literal">NULL</span>) <span class="hljs-comment">//内存分配失败</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    s-&gt;next = p-&gt;next;<br>    p-&gt;next = s;  <span class="hljs-comment">//新节点 S 连接到 P 之后</span><br>    s-&gt;data = p-&gt;data; <span class="hljs-comment">// 将p中元素复制到s中</span><br>    p-&gt;data = e;    <span class="hljs-comment">// p 中元素覆盖为e</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-comment">// a1 -&gt; a2 -&gt; a3</span><br>    <span class="hljs-comment">// p      s  </span><br>&#125;<br><br><span class="hljs-comment">//指定节点的前插 在p节点之前插入节点s</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">InsertPriorNode</span><span class="hljs-params">(LNode* p, LNode* s)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (p == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    s = (LNode*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode));<br>    <span class="hljs-keyword">if</span> (s == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-type">int</span> temp;  <span class="hljs-comment">//用temp临时存储交换的数据</span><br>    s-&gt;next = p-&gt;next;<br>    p-&gt;next = s;<br>    temp = s-&gt;data; <br>    s-&gt;data = p-&gt;data;<br>    p-&gt;data = temp;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>(前插1)先把节点S插入到节点P后面，然后把P的值赋给节点S,最后更新p的值为e</li>
+<li>(前插2) 也是利用把S后插到P之后，然后用一个temp 来进行数据交换，temp的类型为data类型</li>
+</ul>
+<p>时间复杂度 : O(1)</p>
+<ul>
+<li>✨删除</li>
+</ul>
+<p>​        <strong>按位删除</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//按位序删除(带头节点)</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">ListDelete</span><span class="hljs-params">(LinkList&amp; L, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span>&amp; e)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    LNode* p; <span class="hljs-comment">//指针p指向当前扫描到的节点</span><br>    <span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; <span class="hljs-comment">//当前p指向的是第几个节点</span><br>    p = L;  <br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span> &amp;&amp; j &lt; i - <span class="hljs-number">1</span>)<br>    &#123;<br>        p = p-&gt;next;<br>        j++;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (p == <span class="hljs-literal">NULL</span>)  <span class="hljs-comment">// i 值不合法</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-comment">///  !!!!!!!!!!!</span><br>    <span class="hljs-keyword">if</span> (p-&gt;next == <span class="hljs-literal">NULL</span>) <span class="hljs-comment">//第i-1 个节点之后已无其它节点</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    LNode* q = p-&gt;next; <span class="hljs-comment">//令 q 指向被删除的节点 </span><br>    e = q-&gt;data;        <span class="hljs-comment">// 用e返回元素的值      </span><br>    p-&gt;next = q-&gt;next;  <br>    <span class="hljs-built_in">free</span>(q);<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br><br><span class="hljs-comment">//按位序删除(不带头节点)</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">ListDelete</span><span class="hljs-params">(LinkList&amp; L, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span>&amp; e)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">if</span>(i == <span class="hljs-number">1</span>)<br>    &#123;<br>        LNode *p; <br>        p = L; <span class="hljs-comment">// p指向了L，也就是第一个节点</span><br>        L = p-&gt;next; <br>        <span class="hljs-built_in">free</span>(p);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    LNode* p;<br>    p = L;<br>    <span class="hljs-type">int</span> j = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span> &amp;&amp; j &lt; i - <span class="hljs-number">1</span>)<br>    &#123;<br>        p = p-&gt;next;<br>        j++;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (p == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">if</span> (p-&gt;next == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    LNode* q = p-&gt;next;<br>    e = q-&gt;data;<br>    p-&gt;next = q-&gt;next;<br>    <span class="hljs-built_in">free</span>(q);<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>判断第i-1 个节点之后是否已无其它节点</li>
+<li>在对无头结点的链表进行操作时，需注意 当 i = 1时，需要单独操作，我发现在进行删除操作时最重要时 <strong>free()</strong>,把要删除的空间free掉，因此需要额外的指针变量，指向要删除的节点</li>
+</ul>
+<p>时间复杂度:</p>
+<ul>
+<li>最好情况: 删除第一个位置元素O(1)</li>
+<li>最坏情况: 删除最后一个位置元素O(n)</li>
+<li>平均情况:    因此平均复杂度为 O(n)</li>
+</ul>
+<p>🐱‍👤<strong>删除指定节点</strong> (这个也比较玄乎)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//删除指定节点</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">DeleteNode</span><span class="hljs-params">(LNode* p)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (p == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-comment">//如果删除的是最后一个节点</span><br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">     LNode *q;</span><br><span class="hljs-comment">     q = L;</span><br><span class="hljs-comment">     int j = 0;</span><br><span class="hljs-comment">     while(q-&gt;next != NULL)</span><br><span class="hljs-comment">     &#123; //j指向了删除节点</span><br><span class="hljs-comment">        q = q-&gt;next;</span><br><span class="hljs-comment">        j++;</span><br><span class="hljs-comment">     &#125;</span><br><span class="hljs-comment">     //调用按位序删除的函数</span><br><span class="hljs-comment">     int e = -1;</span><br><span class="hljs-comment">     ListDelete(L, j, e);</span><br><span class="hljs-comment">     */</span><br>    LNode* q = p-&gt;next; <span class="hljs-comment">//令q指向*p的后继节点</span><br>    p-&gt;data = q-&gt;data;  <span class="hljs-comment">//把后继节点q的内容覆盖过去p</span><br>    p-&gt;next = p-&gt;next-&gt;next;<span class="hljs-comment">// 将*q节点从链中断开</span><br>    <span class="hljs-built_in">free</span>(q);   <span class="hljs-comment">//释放后继节点的存储空间</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>该操作就是把当前节点的后继节点复制给当前节点，然后删除后继节点</li>
+<li>如果时删除最后一个节点那么上述操作就违法了，需要注释里的内容。时间复杂度为O(n)</li>
+</ul>
+<p>时间复杂度:  O(1)</p>
+<h4 id="查找">查找</h4>
+<ul>
+<li>✨按位查找</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//按位查找(有头节点) </span><br>LNode* <span class="hljs-title function_">GetElem</span><span class="hljs-params">(LinkList L, <span class="hljs-type">int</span> i)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>    LNode* p; <span class="hljs-comment">//指针p指向当前扫描的结点</span><br>    <span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;<span class="hljs-comment">//当前p指向的是第几个结点</span><br>    p = L;  <br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span> &amp;&amp; j &lt; i)<br>    &#123; <span class="hljs-comment">// 循环找到第i个结点</span><br>        p = p-&gt;next;<br>        j++;<br>    &#125;<br>    <span class="hljs-keyword">return</span> p;<br>&#125;<br><span class="hljs-comment">//假设一共有4个结点</span><br><br><span class="hljs-comment">//按位查找(没有头节点) </span><br>LNode *<span class="hljs-title function_">GetElem</span><span class="hljs-params">(LinkList L, <span class="hljs-type">int</span> i)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(i &lt; <span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>    LNode *p;<br>    <span class="hljs-type">int</span> j = <span class="hljs-number">1</span>;<span class="hljs-comment">//当前p指向的是第几个结点</span><br>    p = L;<br>    <span class="hljs-keyword">while</span>(p != <span class="hljs-literal">NULL</span> &amp;&amp; j &lt; i)<br>    &#123;<br>        p = p-&gt;next;<br>        j++;<br>    &#125;<br>    <span class="hljs-keyword">return</span> p;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>:rabbit2:边界情况:i = 0, 返回NULL. i = 6，返回NULL</li>
+</ul>
+<p>时间复杂度:O(n)</p>
+<ul>
+<li>✨按值查找</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//按值查找(有头节点) </span><br>LNode* <span class="hljs-title function_">LocateElem</span><span class="hljs-params">(LinkList L, <span class="hljs-type">int</span> e)</span><br>&#123;<br>    LNode* p = L-&gt;next; <span class="hljs-comment">//从第一个结点开始查找数据域为e的结点</span><br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span> &amp;&amp; p-&gt;data != e)<br>        p = p-&gt;next;<br>    <span class="hljs-keyword">return</span> p;<br>&#125;<br><br><span class="hljs-comment">//按值查找(没有头节点) </span><br>LNode *<span class="hljs-title function_">LocateElem</span><span class="hljs-params">(LinkList L, <span class="hljs-type">int</span> e)</span><br>&#123;<br>    LNode *p = L;<span class="hljs-comment">//从第一个结点开始查找数据域为e的结点</span><br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span> &amp;&amp; p-&gt;data != e)<br>        p = p-&gt;next;<br>    <span class="hljs-keyword">return</span> p;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>如果 数据e是结构体类型，得写个函数，按照各个分量进行比较</li>
+</ul>
+<p>时间复杂度:O(n)</p>
+<h4 id="建立（❗初始化）">建立（❗初始化）</h4>
+<ul>
+<li>✨头插法 ( 🐱‍🏍<strong>用于链表逆置</strong>)</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//头插法建立单链表(有头节点)</span><br>LinkList <span class="hljs-title function_">List_HeadInsert</span><span class="hljs-params">(LinkList&amp; L)</span><br>&#123;<br>    LNode* s;<br>    <span class="hljs-type">int</span> x;<br>    L = (LinkList)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode));<span class="hljs-comment">//创建头结点</span><br>    L-&gt;next = <span class="hljs-literal">NULL</span>; <span class="hljs-comment">//初始化为空链表</span><br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);<br>    <span class="hljs-keyword">while</span> (x != <span class="hljs-number">9999</span>)<br>    &#123;<br>        s = (LNode*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode));<br>        s-&gt;data = x;<br>        s-&gt;next = L-&gt;next;<br>        L-&gt;next = s;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);<br>    &#125;<br>    <span class="hljs-keyword">return</span> L;<br>&#125;<br><span class="hljs-comment">//头插法建立单链表(没有头节点)</span><br>LinkList <span class="hljs-title function_">List_HeadInsert</span><span class="hljs-params">(LinkList&amp; L)</span><br>&#123;<br>    LNode* s;<br>    <span class="hljs-type">int</span> x;<br>    L = (LinkList)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode));<br>    L = <span class="hljs-literal">NULL</span>;<span class="hljs-comment">//初始化为空链表</span><br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);<br>    <span class="hljs-keyword">while</span> (x != <span class="hljs-number">9999</span>)<br>    &#123;<br>        s = (LNode*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode));<br>        s-&gt;data = x;<br>        s-&gt;next = L;<br>        L = s;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);<br>    &#125;<br>    <span class="hljs-keyword">return</span> L;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>有无头节点的区别是<strong>初始化的区别</strong>，然后就是后插的时候头指针指向的区别 (L-&gt;next, L )</li>
+</ul>
+<p>时间复杂度:O(1)</p>
+<h4 id="其他操作-判空，求表长，-输出，逆置">其他操作(判空，求表长， 输出，逆置)</h4>
+<ul>
+<li>✨判空</li>
+</ul>
+  <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//判空(带头结点)</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">Empty</span><span class="hljs-params">(LinkList L)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(L-&gt;next == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><span class="hljs-comment">//判空(不带头结点)</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">Empty</span><span class="hljs-params">(LinkList L)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(L == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>✨输出</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//带头结点</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">print</span><span class="hljs-params">(LinkList&amp; L)</span><br>&#123;<br>    LNode* p;<br>    p = L-&gt;next; <span class="hljs-comment">//p指向第一个结点</span><br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, p-&gt;data);<br>        p = p-&gt;next;<br>    &#125;<br>&#125;<br><span class="hljs-comment">//不带头结点</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">print</span><span class="hljs-params">(LinkList&amp; L)</span><br>&#123;<br>    LNode* p;<br>    p = L;<span class="hljs-comment">//p指向第一个结点</span><br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, p-&gt;data);<br>        p = p-&gt;next;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>❗易错点:</p>
+<ul>
+<li>有无头节点的区别是指针 p 指向的位置</li>
+</ul>
+<p>时间复杂度:O(n)</p>
+<ul>
+<li>
+<p>✨求表长</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//求表长(有头节点)</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">length</span><span class="hljs-params">(LinkList L)</span><br>&#123;<br>    LNode* p;<br>    <span class="hljs-type">int</span> len = <span class="hljs-number">0</span>;<br>    p = L; <br>    <span class="hljs-keyword">while</span> (p-&gt;next != <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        p = p-&gt;next;<br>        len++;<br>    &#125;<br>    <span class="hljs-keyword">return</span> len;<br>&#125;<br><span class="hljs-comment">//求表长(无头结点)</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">length</span><span class="hljs-params">(LinkList L)</span><br>&#123;<br>    LNode *p;<br>    <span class="hljs-type">int</span> len = <span class="hljs-number">1</span>;<br>    p = L;<br>    <span class="hljs-keyword">while</span>(p-&gt;next != <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        p = p-&gt;next;<br>        len++;<br>    &#125;<br>    <span class="hljs-keyword">return</span> len;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>有无头节点 len起始位置不同</li>
+</ul>
+<p>时间复杂度:O(n)</p>
+</li>
+<li>
+<p>✨头插法链表逆置</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c">LinkList <span class="hljs-title function_">List_reverse</span><span class="hljs-params">(LinkList L)</span><br>&#123;<br>    LNode* s, * p, * q;<span class="hljs-comment">//定义三个指针变量， s为新的链表头指针，p指向旧链表， q用来接收L的数据，加入到新链表中</span><br>    p = L-&gt;next;<br>    s = (LinkList)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode));<br>    s-&gt;next = <span class="hljs-literal">NULL</span>;<br><br>    <span class="hljs-keyword">while</span> (p)<br>    &#123;<br>        q = (LNode*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode)); <span class="hljs-comment">//给q分配一个空间</span><br>        q-&gt;data = p-&gt;data; <span class="hljs-comment">//把旧链表的值赋给q</span><br>        q-&gt;next = s-&gt;next; <br>        s-&gt;next = q; <span class="hljs-comment">//把q后插如s中</span><br>        p = p-&gt;next;<br>    &#125; <br>    L = s;<br>    <span class="hljs-keyword">return</span> L;<br>&#125;<br><br><span class="hljs-comment">//不带头结点的逆转</span><br>LinkList <span class="hljs-title function_">List_reverse</span><span class="hljs-params">(LinkList&amp; L)</span><br>&#123;<br>    LNode* s, * p, * q;<br>    p = L;<br>    s = (LinkList)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode));<br>    s = <span class="hljs-literal">NULL</span>;<br><br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        q = (LNode*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode));<br>        q-&gt;data = p-&gt;data;<br>        q-&gt;next = s;<br>        s = q;<br>        p = p-&gt;next;<br>    &#125;<br>    L = s;<br>    <span class="hljs-keyword">return</span> L;<br>&#125;<br><span class="hljs-comment">//注释和上面一样</span><br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>有无头节点的区别是<strong>初始化的区别</strong>，然后就是后插的时候头指针指向的区别 (L-&gt;next, L )</li>
+</ul>
+<p>时间复杂度:O(n)</p>
+<p>✨尾插法</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//尾插法建立单链表(有头节点)</span><br>LinkList  <span class="hljs-title function_">List_Taillnsert</span><span class="hljs-params">(LinkList&amp; L)</span><br>&#123;<br>    <span class="hljs-type">int</span> x;<br>    L = (LinkList)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode)); <span class="hljs-comment">//初始化为空表</span><br>    LNode* s, * r = L; <span class="hljs-comment">//r 为表尾指针</span><br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);<br>    <span class="hljs-keyword">while</span> (x != <span class="hljs-number">9999</span>)<br>    &#123;<br>        s = (LNode*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode));<br>        s-&gt;data = x;<br>        r-&gt;next = s;<br>        r = s; <span class="hljs-comment">//永远保持r指向最后一个结点</span><br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);<br>    &#125;<br>    r-&gt;next = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">return</span> L;<br>&#125;<br><br><span class="hljs-comment">//尾插法建立单链表(没有头节点)</span><br>LinkList  <span class="hljs-title function_">List_Taillnsert</span><span class="hljs-params">(LinkList&amp; L)</span><br>&#123;<br>    <span class="hljs-type">int</span> x;<br>    L = <span class="hljs-literal">NULL</span>; <span class="hljs-comment">//初始化千万不能忘</span><br>    LNode* s, * r = L;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);<br>    <span class="hljs-keyword">while</span> (x != <span class="hljs-number">9999</span>)<span class="hljs-comment">/**/</span><br>    &#123;<br>        s = (LNode*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode));<br>        s-&gt;data = x;<br>        s-&gt;next = <span class="hljs-literal">NULL</span>;<br>        <span class="hljs-keyword">if</span> (L == <span class="hljs-literal">NULL</span>) <span class="hljs-comment">//如=若一开始为空表需要特判一下</span><br>        &#123;<br>            L = s;<br>            r = s;<br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123;<br>            r-&gt;next = s;<br>            r = s;<br>        &#125;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);<br>    &#125;<br>    r-&gt;next = <span class="hljs-literal">NULL</span>;<br><br>    <span class="hljs-keyword">return</span> L;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>有无头节点的区别是<strong>初始化的区别</strong>.初始化非常重要</li>
+</ul>
+<p>时间复杂度:O(1)</p>
+<p>🎃<s>尾插法笨(不推荐)</s></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">while</span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;e);<br>    ListInsert(L, length + <span class="hljs-number">1</span>, e)<span class="hljs-comment">//插到尾部，该操作为O(n)</span><br>    length++;    <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>时间复杂度:$$O(n^2)$$</p>
+<h2 id="双链表-Double-LinkList">双链表(Double LinkList)</h2>
+<p><img src="/img/DS.2.11.png" alt="DS.2.11"></p>
+<h4 id="初始化-3">初始化</h4>
+<ul>
+<li>✨初始化</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">DNode</span> &#123;</span><br>     <span class="hljs-type">int</span> data;<br>     <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">DNode</span>* <span class="hljs-title">prior</span>, *<span class="hljs-title">next</span>;</span><br>&#125;DNode, *DLinkList;<br><br><span class="hljs-comment">//初始化双链表(带头结点)</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">InitDLinkList</span><span class="hljs-params">(DLinkList &amp;L)</span><br>&#123;<br>    L = (DNode*) <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span> (DNode)); <span class="hljs-comment">// 分配一个头节点</span><br>    <span class="hljs-keyword">if</span>(L == <span class="hljs-literal">NULL</span>)           <span class="hljs-comment">//内存不足，分配失败</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    L-&gt;prior = <span class="hljs-literal">NULL</span>;      <span class="hljs-comment">// 头结点的prior永远指向NULL</span><br>    L-&gt;next = <span class="hljs-literal">NULL</span>;      <span class="hljs-comment">//  头节点之后暂时没有结点</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><span class="hljs-comment">//初始化双链表(不带头结点)</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">InitDLinkList</span><span class="hljs-params">(DLinkList &amp;L)</span><br>&#123;<br>    L = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>有头节点需要把头节点的前向指针置空</li>
+</ul>
+<h4 id="插入">插入</h4>
+<ul>
+<li>✨ <strong>后插</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//双链表的插入 在p结点之后插入s结点</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">InsertNextDNOde</span><span class="hljs-params">(DNode *p, DNode *s)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(p == <span class="hljs-literal">NULL</span> || s == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    s-&gt;next = p -&gt;next;<br>    <span class="hljs-keyword">if</span>(p-&gt;next != <span class="hljs-literal">NULL</span>) <span class="hljs-comment">//如果p结点有后继节点</span><br>        p-&gt;next-&gt;prior = s;<br>    s-&gt;prior = p;<br>    p-&gt;next = s;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>结点p是否有后继结点需要特判一下，因为后继节点若为空，那么后继节点就没有前指针</li>
+</ul>
+<p>时间复杂度:$$O(1)$$</p>
+<ul>
+<li>🐱‍👤<strong>按位序插入</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//按位序插入(带头结点)</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">DListInsert</span><span class="hljs-params">(DLinkList&amp; L, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> e)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    DNode* p;  <span class="hljs-comment">//指针p指向当前扫描到的节点</span><br>    <span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; <span class="hljs-comment">//当前p指向的是第几个节点</span><br>    p = L;  <span class="hljs-comment">//指向头节点，头节点是第0个节点</span><br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span> &amp;&amp; j &lt; i - <span class="hljs-number">1</span>) <span class="hljs-comment">//循环找到第i-1个结点</span><br>    &#123;<br>        p = p-&gt;next;<br>        j++;<br>    &#125;<br>    <span class="hljs-comment">//return InsertNextDNode(p, e);</span><br>    <span class="hljs-keyword">if</span>(p == <span class="hljs-literal">NULL</span>) <span class="hljs-comment">//i值不合法</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    DNode* s = (DNode*) <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span> (DNode));<br>    s-&gt;data = e;<br>    s-&gt;next = p-&gt;next;<br>    <span class="hljs-keyword">if</span>(p-&gt;next != <span class="hljs-literal">NULL</span>)<br>        p-&gt;next-&gt;prior = s;<br>    p-&gt;next = s;  <span class="hljs-comment">//将节点s插入到p后</span><br>    s-&gt;prior = p;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>时间复杂度:$$O(n)$$</p>
+<ul>
+<li>
+<pre><code>           🐱‍🐉   **前插**
+</code></pre>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//指定节点的前插 在p节点之前插入元素e</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">InsertPriorDNode</span><span class="hljs-params">(DNode* p, <span class="hljs-type">int</span> e)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (p == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    DNode* s = (DNode*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(DNode));<br>    <span class="hljs-keyword">if</span> (s == <span class="hljs-literal">NULL</span>) <span class="hljs-comment">//内存分配失败</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    s-&gt;next = p-&gt;next;<br>    <span class="hljs-keyword">if</span>(p-&gt;next != <span class="hljs-literal">NULL</span>)<br>        p-&gt;next-&gt;prior = s;<br>    p-&gt;next = s;  <span class="hljs-comment">//将节点s插入到p后</span><br>    s-&gt;prior = p;<br>    s-&gt;data = p-&gt;data;<span class="hljs-comment">// 将p中元素复制到s中</span><br>    p-&gt;data = e;    <span class="hljs-comment">// p 中元素覆盖为e</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-comment">// a1 -&gt; a2 -&gt; a3</span><br>    <span class="hljs-comment">// p      s</span><br>&#125;<br><span class="hljs-comment">//指定节点的前插 在p节点之前插入节点s</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">InsertPriorNode</span><span class="hljs-params">(DNode* p, DNode* s)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (p == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    s = (DNode*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(DNode));<br>    <span class="hljs-keyword">if</span> (s == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-type">int</span> temp;  <span class="hljs-comment">//用temp临时存储交换的数据</span><br>    s-&gt;next = p-&gt;next;<br>    <span class="hljs-keyword">if</span>(p-&gt;next != <span class="hljs-literal">NULL</span>)<br>        p-&gt;next-&gt;prior = s;<br>    p-&gt;next = s;<br>    s-&gt;prior = p;<br>    temp = s-&gt;data;<br>    s-&gt;data = p-&gt;data;<br>    p-&gt;data = temp;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>(前插1)先把节点S插入到节点P后面，然后把P的值赋给节点S,最后更新p的值为e</li>
+<li>(前插2) 也是利用把S后插到P之后，然后用一个temp 来进行数据交换，temp的类型为data类型</li>
+</ul>
+<p>时间复杂度 : O(1)</p>
+<h4 id="删除">删除</h4>
+<ul>
+<li>✨后删</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//删除p结点的后继节点</span><br><span class="hljs-type">bool</span>  <span class="hljs-title function_">DeleteNextDNode</span><span class="hljs-params">(DNode *p)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(p == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    DNode *q = p-&gt;next; <span class="hljs-comment">//找到p的后继节点q</span><br>    <span class="hljs-keyword">if</span>(q == <span class="hljs-literal">NULL</span>)  <span class="hljs-comment">//p 没有后继节点</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    p-&gt;next = q-&gt;next;<br>    <span class="hljs-keyword">if</span>(q-&gt;next != <span class="hljs-literal">NULL</span>)<br>        q-&gt;next-&gt;prior = p;<br>    <span class="hljs-built_in">free</span>(q);<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>时间复杂度 : O(1)</p>
+<ul>
+<li>🐱‍🏍 <strong>链表的销毁</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//带头节点</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">DestoryList</span><span class="hljs-params">(DLinkList &amp;L)</span><br>&#123;   <span class="hljs-comment">//循环释放各个数据节点</span><br>    <span class="hljs-keyword">while</span>(L-&gt;next != <span class="hljs-literal">NULL</span>)<br>        DeleteNextDNode(L);<br>    <span class="hljs-built_in">free</span>(L); <span class="hljs-comment">//释放头节点</span><br>    L = <span class="hljs-literal">NULL</span>; <span class="hljs-comment">//头指针指向NULL</span><br>&#125;<br><span class="hljs-comment">//不带头节点</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">DestoryList</span><span class="hljs-params">(DLinkList &amp;L)</span><br>&#123;   <span class="hljs-comment">//循环释放各个数据节点</span><br>    <span class="hljs-keyword">while</span>(L != <span class="hljs-literal">NULL</span>)<br>        DeleteNextDNode(L);<br>    <span class="hljs-built_in">free</span>(L); <span class="hljs-comment">//释放头节点</span><br>    L = <span class="hljs-literal">NULL</span>; <span class="hljs-comment">//头指针指向NULL</span><br>    <span class="hljs-comment">//free之后L指向的默认就是NULl</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>注意free函数，他只是释放了L指向的空间，但L还是存在</li>
+<li>带头节点与不带的区别是<code>while(L !=NULL)</code> 里的区别</li>
+</ul>
+<p>时间复杂度 : O(n)</p>
+<h4 id="查找-2">查找</h4>
+<ul>
+<li>✨遍历</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//后向遍历</span><br><span class="hljs-keyword">while</span>(p!=<span class="hljs-literal">NULL</span>)<br>&#123;  <span class="hljs-comment">//对结点P做相应处理，如打印</span><br>    p = p-&gt;next;<br>&#125;<br><span class="hljs-comment">//前向遍历</span><br><span class="hljs-keyword">while</span>(p!=<span class="hljs-literal">NULL</span>)<br>&#123;<span class="hljs-comment">//对结点p做相应的处理</span><br>    p = p-&gt;prior;<br>&#125;<br><span class="hljs-comment">//前向遍历</span><br><span class="hljs-keyword">while</span>(p-&gt;prior != <span class="hljs-literal">NULL</span>)<br>&#123;<br>    p = p-&gt;prior;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>🐱‍👓 <strong>按位查找</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//按位查找(有头节点)</span><br>DNode* <span class="hljs-title function_">GetElem</span><span class="hljs-params">(DLinkList L, <span class="hljs-type">int</span> i)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>    DNode* p; <span class="hljs-comment">//指针p指向当前扫描的结点</span><br>    <span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;<span class="hljs-comment">//当前p指向的是第几个结点</span><br>    p = L;<br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span> &amp;&amp; j &lt; i)<br>    &#123; <span class="hljs-comment">// 循环找到第i个结点</span><br>        p = p-&gt;next;<br>        j++;<br>    &#125;<br>    <span class="hljs-keyword">return</span> p;<br>&#125;<br><span class="hljs-comment">//按位查找(没有头节点) </span><br>DNode *<span class="hljs-title function_">GetElem</span><span class="hljs-params">(DLinkList L, <span class="hljs-type">int</span> i)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(i &lt; <span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>    DNode *p;<br>    <span class="hljs-type">int</span> j = <span class="hljs-number">1</span>;<span class="hljs-comment">//当前p指向的是第几个结点</span><br>    p = L;<br>    <span class="hljs-keyword">while</span>(p != <span class="hljs-literal">NULL</span> &amp;&amp; j &lt; i)<br>    &#123;<br>        p = p-&gt;next;<br>        j++;<br>    &#125;<br>    <span class="hljs-keyword">return</span> p;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>时间复杂度:O(n)</p>
+<ul>
+<li>🐱‍🚀<strong>按值查找</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//按值查找(有头节点)</span><br>DNode* <span class="hljs-title function_">LocateElem</span><span class="hljs-params">(DLinkList L, <span class="hljs-type">int</span> e)</span><br>&#123;<br>    DNode* p = L-&gt;next; <span class="hljs-comment">//从第一个结点开始查找数据域为e的结点</span><br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span> &amp;&amp; p-&gt;data != e)<br>        p = p-&gt;next;<br>    <span class="hljs-keyword">return</span> p;<br>&#125;<br><span class="hljs-comment">//按值查找(没有头节点)</span><br>DNode* <span class="hljs-title function_">LocateElem</span><span class="hljs-params">(DLinkList L, <span class="hljs-type">int</span> e)</span><br>&#123;<br>    DNode* p = L; <span class="hljs-comment">//从第一个结点开始查找数据域为e的结点</span><br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span> &amp;&amp; p-&gt;data != e)<br>        p = p-&gt;next;<br>    <span class="hljs-keyword">return</span> p;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>时间复杂度:O(n)</p>
+<h4 id="其他操作-判空，求表长，-输出-2">其他操作(判空，求表长， 输出)</h4>
+<ul>
+<li>✨判空</li>
+</ul>
+  <figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//判空(带头结点)</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">Empty</span><span class="hljs-params">(DLinkList L)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(L-&gt;next == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><span class="hljs-comment">//判空(不带头结点)</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">Empty</span><span class="hljs-params">(DLinkList L)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(L == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>✨输出</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//带头结点</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">print</span><span class="hljs-params">(DLinkList&amp; L)</span><br>&#123;<br>    DNode* p;<br>    p = L-&gt;next; <span class="hljs-comment">//p指向第一个结点</span><br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, p-&gt;data);<br>        p = p-&gt;next;<br>    &#125;<br>&#125;<br><span class="hljs-comment">//不带头结点</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">print</span><span class="hljs-params">(DLinkList&amp; L)</span><br>&#123;<br>    DNode* p;<br>    p = L;<span class="hljs-comment">//p指向第一个结点</span><br>    <span class="hljs-keyword">while</span> (p != <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, p-&gt;data);<br>        p = p-&gt;next;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>❗易错点:</p>
+<ul>
+<li>有无头节点的区别是指针 p 指向的位置</li>
+</ul>
+<p>时间复杂度:O(n)</p>
+<ul>
+<li>
+<p>✨求表长</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//求表长(有头节点)</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">length</span><span class="hljs-params">(DLinkList L)</span><br>&#123;<br>    DNode* p;<br>    <span class="hljs-type">int</span> len = <span class="hljs-number">0</span>;<br>    p = L; <br>    <span class="hljs-keyword">while</span> (p-&gt;next != <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        p = p-&gt;next;<br>        len++;<br>    &#125;<br>    <span class="hljs-keyword">return</span> len;<br>&#125;<br><span class="hljs-comment">//求表长(无头结点)</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">length</span><span class="hljs-params">(DLinkList L)</span><br>&#123;<br>    DNode *p;<br>    <span class="hljs-type">int</span> len = <span class="hljs-number">1</span>;<br>    p = L;<br>    <span class="hljs-keyword">while</span>(p-&gt;next != <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        p = p-&gt;next;<br>        len++;<br>    &#125;<br>    <span class="hljs-keyword">return</span> len;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>❗易错点:</p>
+<ul>
+<li>有无头节点 len起始位置不同</li>
+</ul>
+<p>时间复杂度:O(n)</p>
+</li>
+</ul>
+<h2 id="循环链表-Cyclic-LinkList">循环链表(Cyclic LinkList)</h2>
+<p><img src="/img/DS.2.12.png" alt="DS.2.12"></p>
+<h3 id="循环单链表">循环单链表</h3>
+<p><img src="/img/DS.2.13.png" alt="DS.2.13"></p>
+<p>​      ❗❗❗   <strong>时刻记住头节点长啥样</strong>(将就看吧，截图太累了)</p>
+<h4 id="🐳初始化一个循环单链表">🐳<strong>初始化一个循环单链表</strong></h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//初始化一个循环单链表</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">InitList</span><span class="hljs-params">(LinkList &amp;L)</span><br>&#123;<br>    L = (LNode*) <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode)); <span class="hljs-comment">// 分配一个头节点</span><br>    <span class="hljs-keyword">if</span>(L == <span class="hljs-literal">NULL</span>)    <span class="hljs-comment">//内存不足，分配失败</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    L-&gt;next = L;  <span class="hljs-comment">//头节点的next指针指向头节点</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="🦍判断结点p是否为循环单链表的表尾结点">🦍<strong>判断结点p是否为循环单链表的表尾结点</strong></h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//判断结点p是否为循环单链表的表尾结点</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">isTail</span><span class="hljs-params">(LinkList L, LNode *p)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(p-&gt;next == L)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="🐱‍👓-判断循环单链表是否为空">🐱‍👓  <strong>判断循环单链表是否为空</strong></h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//判断循环单链表是否为空</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">Empty</span><span class="hljs-params">(LinkList &amp;L)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(L-&gt;next == L)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">else</span> <br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>❗<strong>重点强调</strong></p>
+<ul>
+<li>单链表:从一个结点出发只能找到后续的各个节点</li>
+<li>循环单链表: 从一个结点出发可以找到其他任何一个结点</li>
+<li>循环单链表:从头部到尾部。时间复杂度为O(n)</li>
+<li>循环单链表:从尾部到头部。时间复杂度为O(1)</li>
+</ul>
+<h3 id="循环双链表">循环双链表</h3>
+<p><img src="/img/DS.2.13.png" alt="DS.2.13"></p>
+<p>❗❗❗   <strong>时刻记住头节点长啥样</strong>(将就看吧，截图太累了)</p>
+<h4 id="🦏-初始化">🦏 <strong>初始化</strong></h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">bool</span> <span class="hljs-title function_">InitDLinkList</span><span class="hljs-params">(DLinkList &amp;L)</span><br>&#123;<br>    L = (DNode*) <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span> (DNode)); <span class="hljs-comment">// 分配一个头节点</span><br>    <span class="hljs-keyword">if</span>(L == <span class="hljs-literal">NULL</span>)     <span class="hljs-comment">//内存不足，分配失败</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    L-&gt;prior = L;  <span class="hljs-comment">//头节点的prior指向头节点</span><br>    L-&gt;next = L;   <span class="hljs-comment">//头节点的next指向头节点</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>​    ❗易错点</p>
+<ul>
+<li>一定要记住头节点长啥样</li>
+</ul>
+<pre><code> ​       
+</code></pre>
+<h4 id="☯-判断循环双链表是否为空">☯ <strong>判断循环双链表是否为空</strong></h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//判断循环双链表是否为空</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">Empty</span><span class="hljs-params">(DLinkList L)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(L-&gt;next == L)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>时间复杂度: O(1)</p>
+<h4 id="☪判断结点p是否为循环单链表的表尾结点">☪<strong>判断结点p是否为循环单链表的表尾结点</strong></h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//判断结点p是否为循环单链表的表尾结点</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">isTail</span><span class="hljs-params">(DLinkList L,DNode *p)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(p-&gt;next == L)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="🙌-在p结点之后插入s结点">🙌 <strong>在p结点之后插入s结点</strong></h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//在p结点之后插入s结点</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">InsertNextDNode</span><span class="hljs-params">(DNode *p, DNode *s)</span><br>&#123;<br>    s-&gt;next = p-&gt;next;<br>    p-&gt;next-&gt;prior = s;<br>    s-&gt;prior = p;<br>    p-&gt;next = s;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="🖼-删除p的后继结点q">🖼  <strong>删除p的后继结点q</strong></h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//删除p的后继结点q</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">DeleteNextDNode</span><span class="hljs-params">(DNode *p, DNode *q)</span><br>&#123;<br>    p-&gt;next = q-&gt;next;<br>    q-&gt;next-&gt;prior = p;<br>    <span class="hljs-built_in">free</span>(q);<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>❗易错点</p>
+<ul>
+<li>
+<p>前两个代码很好的体现了循环双链表的好处</p>
+</li>
+<li>
+<p>即不用特判结点q是否有后继节点</p>
+<p>​</p>
+</li>
+</ul>
+<h2 id="静态链表-Static-LinkList">静态链表(Static LinkList)</h2>
+<p><img src="/img/DS.2.14.png" alt="DS.2.14"></p>
+<p><img src="/img/DS.2.15.png" alt="DS.2.15"></p>
+<ul>
+<li>没啥好讲的</li>
+<li>注意一点，数组下标只是物理上相邻，而next里存着的则是逻辑上，也就是我们需要操作的下标</li>
+</ul>
+<h2 id="总结">总结</h2>
+<h3 id="🐱‍👓-逻辑结构">🐱‍👓 <strong>逻辑结构</strong></h3>
+<ul>
+<li>顺序表和链表都属于线性表，都是线性结构</li>
+</ul>
+<h3 id="🐱‍🚀-存储结构">🐱‍🚀 <strong>存储结构</strong></h3>
+<ul>
+<li>顺序表是顺序存储</li>
+<li>顺序表的优点:支持随机存取，存储密度高</li>
+<li>顺序表的缺点:大片连续空间分配不方便，改变容量不方便</li>
+<li>链表是链式存储</li>
+<li>链表的优点:离散的小空间分配方便，改变容量方便</li>
+<li>链表的缺点:不可随机存取，存储密度低</li>
+</ul>
+<h3 id="🐱‍👤-基本操作">🐱‍👤  <strong>基本操作</strong></h3>
+<h4 id="创"><strong>创</strong></h4>
+<ul>
+<li>顺序表分为静态分配与动态分配</li>
+<li>顺序表需要预分配大片连续空间。若分配空间过小，则之后不方便拓展容量；若分配空间过大，则浪费内存资源</li>
+<li>静态分配:用的是(<strong>容量不可改变</strong>)的静态数组</li>
+<li>动态分配:用的是(<strong>容量可改变，但需要移动大量元素，时间代价高</strong>)的动态数组</li>
+<li>链表只需要分配一个头节点(也可以不要头节点，只声明一个头指针)，之后方便拓展</li>
+</ul>
+<h4 id="销">销</h4>
+<ul>
+<li>顺序表-静态分配:静态数组只需修改<code>length = 0</code>即可。系统会自动回收空间</li>
+<li>顺序表-动态分配:动态数组(malloc,free)需要手动free  (malloc 和 free 成对出现)</li>
+<li>链表:依次删除各个节点(free)</li>
+</ul>
+<h4 id="增-删">增 + 删</h4>
+<ul>
+<li>顺序表插入/删除元素要将后续元素都 后移/前移</li>
+<li>顺序表的增删操作时间复杂度为O(n),时间开销主要来自移动元素</li>
+<li>顺序表若数据元素很大，则移动的时间代价很高</li>
+<li>链表插入/删除元素只需修改指针即可</li>
+<li>链表的时间复杂度为O(n),时间开销主要来自查找目标元素</li>
+<li>链表查找元素的时间代价更低</li>
+</ul>
+<h4 id="查">查</h4>
+<ul>
+<li>顺序表:按位查找-O(1)</li>
+<li>顺序表:按值查找-O(n)，若元素有序，利用二分可达到$$ O(log2^n)$$</li>
+<li>链表:按位查找-O(n)</li>
+<li>链表:按值查找-O(n)</li>
+</ul>
+<p>🎉表长难以预估、经常要增加/删除元素 ——链表</p>
+<p>🎉表长可预估、查询（搜索）操作较多 ——顺序表</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">至安</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/09/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%8C%E7%AB%A0/">http://example.com/2022/09/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%8C%E7%AB%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">从前慢</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div><div class="post_share"><div class="social-share" data-image="/img/sea1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/09/19/%E7%AC%AC%E4%B8%89%E5%91%A8%E5%A4%8D%E7%9B%98/"><img class="prev-cover" src="/img/web1.png" onerror="onerror=null;src='/img/any3.webp'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">第三周复盘</div></div></a></div><div class="next-post pull-right"><a href="/2022/09/12/%E7%AC%AC%E4%BA%8C%E5%91%A8%E5%A4%8D%E7%9B%98/"><img class="next-cover" src="/img/any3.webp" onerror="onerror=null;src='/img/any3.webp'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">第二周复盘</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/u.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">至安</div><div class="author-info__description">至安，你抵达安宁了吗？</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ZHIAN"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ZHIAN" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2981115824@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://pic1.zhimg.com/v2-094497df7b05d6db0e7da8c808384fe4_r.jpg" target="_blank" title="picture"><i class="fa-solid fa-image"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">hello</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">第二章 线性表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8-Sequence"><span class="toc-number">1.1.</span> <span class="toc-text">顺序表(Sequence)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%88%86%E9%85%8D"><span class="toc-number">1.1.1.</span> <span class="toc-text">静态分配</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A2%9E%EF%BC%88%E6%8F%92%E5%85%A5%EF%BC%89"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">增（插入）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%EF%BC%88%E5%88%A0%E9%99%A4%EF%BC%89"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">删（删除）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5-%E6%9F%A5%E6%89%BE"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">查(查找)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C-%E5%88%A4%E7%A9%BA%EF%BC%8C%E6%B1%82%E8%A1%A8%E9%95%BF%EF%BC%8C-%E8%BE%93%E5%87%BA"><span class="toc-number">1.1.1.5.</span> <span class="toc-text">其他操作(判空，求表长， 输出)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%88%86%E9%85%8D"><span class="toc-number">1.1.2.</span> <span class="toc-text">动态分配</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96-2"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84%E9%95%BF%E5%BA%A6"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">增加动态数组长度</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%93%BE%E8%A1%A8-LinkList"><span class="toc-number">1.2.</span> <span class="toc-text">单链表(LinkList)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E4%B8%8E%E5%88%A0%E9%99%A4"><span class="toc-number">1.2.0.2.</span> <span class="toc-text">插入与删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE"><span class="toc-number">1.2.0.3.</span> <span class="toc-text">查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%EF%BC%88%E2%9D%97%E5%88%9D%E5%A7%8B%E5%8C%96%EF%BC%89"><span class="toc-number">1.2.0.4.</span> <span class="toc-text">建立（❗初始化）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C-%E5%88%A4%E7%A9%BA%EF%BC%8C%E6%B1%82%E8%A1%A8%E9%95%BF%EF%BC%8C-%E8%BE%93%E5%87%BA%EF%BC%8C%E9%80%86%E7%BD%AE"><span class="toc-number">1.2.0.5.</span> <span class="toc-text">其他操作(判空，求表长， 输出，逆置)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E9%93%BE%E8%A1%A8-Double-LinkList"><span class="toc-number">1.3.</span> <span class="toc-text">双链表(Double LinkList)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96-3"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5"><span class="toc-number">1.3.0.2.</span> <span class="toc-text">插入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-number">1.3.0.3.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE-2"><span class="toc-number">1.3.0.4.</span> <span class="toc-text">查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C-%E5%88%A4%E7%A9%BA%EF%BC%8C%E6%B1%82%E8%A1%A8%E9%95%BF%EF%BC%8C-%E8%BE%93%E5%87%BA-2"><span class="toc-number">1.3.0.5.</span> <span class="toc-text">其他操作(判空，求表长， 输出)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8-Cyclic-LinkList"><span class="toc-number">1.4.</span> <span class="toc-text">循环链表(Cyclic LinkList)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8"><span class="toc-number">1.4.1.</span> <span class="toc-text">循环单链表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%90%B3%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%80%E4%B8%AA%E5%BE%AA%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">🐳初始化一个循环单链表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%A6%8D%E5%88%A4%E6%96%AD%E7%BB%93%E7%82%B9p%E6%98%AF%E5%90%A6%E4%B8%BA%E5%BE%AA%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E8%A1%A8%E5%B0%BE%E7%BB%93%E7%82%B9"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">🦍判断结点p是否为循环单链表的表尾结点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%90%B1%E2%80%8D%F0%9F%91%93-%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">🐱‍👓  判断循环单链表是否为空</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E5%8F%8C%E9%93%BE%E8%A1%A8"><span class="toc-number">1.4.2.</span> <span class="toc-text">循环双链表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%A6%8F-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">🦏 初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%98%AF-%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E5%8F%8C%E9%93%BE%E8%A1%A8%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">☯ 判断循环双链表是否为空</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%98%AA%E5%88%A4%E6%96%AD%E7%BB%93%E7%82%B9p%E6%98%AF%E5%90%A6%E4%B8%BA%E5%BE%AA%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E8%A1%A8%E5%B0%BE%E7%BB%93%E7%82%B9"><span class="toc-number">1.4.2.3.</span> <span class="toc-text">☪判断结点p是否为循环单链表的表尾结点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%99%8C-%E5%9C%A8p%E7%BB%93%E7%82%B9%E4%B9%8B%E5%90%8E%E6%8F%92%E5%85%A5s%E7%BB%93%E7%82%B9"><span class="toc-number">1.4.2.4.</span> <span class="toc-text">🙌 在p结点之后插入s结点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%96%BC-%E5%88%A0%E9%99%A4p%E7%9A%84%E5%90%8E%E7%BB%A7%E7%BB%93%E7%82%B9q"><span class="toc-number">1.4.2.5.</span> <span class="toc-text">🖼  删除p的后继结点q</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8-Static-LinkList"><span class="toc-number">1.5.</span> <span class="toc-text">静态链表(Static LinkList)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.6.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%90%B1%E2%80%8D%F0%9F%91%93-%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84"><span class="toc-number">1.6.1.</span> <span class="toc-text">🐱‍👓 逻辑结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%90%B1%E2%80%8D%F0%9F%9A%80-%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.6.2.</span> <span class="toc-text">🐱‍🚀 存储结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%90%B1%E2%80%8D%F0%9F%91%A4-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.6.3.</span> <span class="toc-text">🐱‍👤  基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B"><span class="toc-number">1.6.3.1.</span> <span class="toc-text">创</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%80"><span class="toc-number">1.6.3.2.</span> <span class="toc-text">销</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A2%9E-%E5%88%A0"><span class="toc-number">1.6.3.3.</span> <span class="toc-text">增 + 删</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5"><span class="toc-number">1.6.3.4.</span> <span class="toc-text">查</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/19/%E7%AC%AC%E4%B8%89%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第三周复盘"><img src="/img/web1.png" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="第三周复盘"/></a><div class="content"><a class="title" href="/2022/09/19/%E7%AC%AC%E4%B8%89%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第三周复盘">第三周复盘</a><time datetime="2022-09-19T05:57:56.000Z" title="发表于 2022-09-19 13:57:56">2022-09-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="数据结构第二章"><img src="/img/sea1.png" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="数据结构第二章"/></a><div class="content"><a class="title" href="/2022/09/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="数据结构第二章">数据结构第二章</a><time datetime="2022-09-16T11:47:33.000Z" title="发表于 2022-09-16 19:47:33">2022-09-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/12/%E7%AC%AC%E4%BA%8C%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第二周复盘"><img src="/img/any3.webp" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="第二周复盘"/></a><div class="content"><a class="title" href="/2022/09/12/%E7%AC%AC%E4%BA%8C%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第二周复盘">第二周复盘</a><time datetime="2022-09-12T12:29:08.000Z" title="发表于 2022-09-12 20:29:08">2022-09-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/11/c%E8%AF%AD%E8%A8%80/" title="c语言"><img src="/img/any3.webp" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="c语言"/></a><div class="content"><a class="title" href="/2022/09/11/c%E8%AF%AD%E8%A8%80/" title="c语言">c语言</a><time datetime="2022-09-11T02:02:26.000Z" title="发表于 2022-09-11 10:02:26">2022-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/09/%E6%B5%8B%E8%AF%95/" title="测试"><img src="/img/any3.webp" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="测试"/></a><div class="content"><a class="title" href="/2022/09/09/%E6%B5%8B%E8%AF%95/" title="测试">测试</a><time datetime="2022-09-09T02:41:03.000Z" title="发表于 2022-09-09 10:41:03">2022-09-09</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/sea1.png')"><div id="footer-wrap"><div class="copyright">&copy;2022 By 至安</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script src="xxxx"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
