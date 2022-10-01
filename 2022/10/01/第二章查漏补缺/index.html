@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>第二章查漏补缺 | 从前慢</title><meta name="author" content="至安"><meta name="copyright" content="至安"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.尾插法   最后尾指针 r 一定要指向空，否则输出的时候会陷入死循环 &#x2F;&#x2F;自己写的版本bool InsertTailLinkList(LinkList &amp;L)&amp;#123;    int x;    scanf(&quot;%d&quot;, &amp;x);    LNode *s, *r;    while(x !&#x3D; 9999)    &amp;#123;        if(L-&gt;n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第二章查漏补缺">
+<meta property="og:url" content="http://example.com/2022/10/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/index.html">
+<meta property="og:site_name" content="从前慢">
+<meta property="og:description" content="1.尾插法   最后尾指针 r 一定要指向空，否则输出的时候会陷入死循环 &#x2F;&#x2F;自己写的版本bool InsertTailLinkList(LinkList &amp;L)&amp;#123;    int x;    scanf(&quot;%d&quot;, &amp;x);    LNode *s, *r;    while(x !&#x3D; 9999)    &amp;#123;        if(L-&gt;n">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/any1.webp">
+<meta property="article:published_time" content="2022-10-01T12:20:47.000Z">
+<meta property="article:modified_time" content="2022-10-01T12:25:59.884Z">
+<meta property="article:author" content="至安">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/any1.webp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/10/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 至安","link":"链接: ","source":"来源: 从前慢","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '第二章查漏补缺',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-10-01 20:25:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/css/custom1.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/u.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/any1.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">从前慢</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">第二章查漏补缺</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-01T12:20:47.000Z" title="发表于 2022-10-01 20:20:47">2022-10-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-01T12:25:59.884Z" title="更新于 2022-10-01 20:25:59">2022-10-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/">查漏补缺</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">830</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="第二章查漏补缺"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>1.尾插法</p>
+<ul>
+<li>
+<p>最后尾指针 r 一定要指向空，否则输出的时候会陷入死循环</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//自己写的版本</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">InsertTailLinkList</span><span class="hljs-params">(LinkList &amp;L)</span><br>&#123;<br>    <span class="hljs-type">int</span> x;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);<br>    LNode *s, *r;<br>    <span class="hljs-keyword">while</span>(x != <span class="hljs-number">9999</span>)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(L-&gt;next == <span class="hljs-literal">NULL</span>)<br>        &#123;<br>            s = (LNode*) <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span> (LNode));<br>            <span class="hljs-keyword">if</span>(s == <span class="hljs-literal">NULL</span>)<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            s-&gt;data = x;<br>            L-&gt;next = s;<br>            r = s;<br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123;<br>        s = (LNode*) <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span> (LNode));<br>        <span class="hljs-keyword">if</span>(s == <span class="hljs-literal">NULL</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        s-&gt;data = x;<br>        r-&gt;next = s;<br>        r = s;<br>        &#125;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);<br>    &#125;<br>    r-&gt;next = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><span class="hljs-comment">//王道版本</span><br><span class="hljs-comment">//尾插法建立单链表(有头节点)</span><br>LinkList  <span class="hljs-title function_">List_Taillnsert</span><span class="hljs-params">(LinkList&amp; L)</span><br>&#123;<br>    <span class="hljs-type">int</span> x;<br>    L = (LinkList)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode)); <span class="hljs-comment">//初始化为空表</span><br>    LNode* s, * r = L; <span class="hljs-comment">//r 为表尾指针</span><br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);<br>    <span class="hljs-keyword">while</span> (x != <span class="hljs-number">9999</span>)<br>    &#123;<br>        s = (LNode*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LNode));<br>        s-&gt;data = x;<br>        r-&gt;next = s;<br>        r = s; <span class="hljs-comment">//永远保持r指向最后一个结点</span><br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);<br>    &#125;<br>    r-&gt;next = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">return</span> L;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>2.顺序表的定义 (什么是顺序存储)</p>
+<ul>
+<li>线性表的<strong>顺序存储</strong>又称<strong>顺序表</strong>。它是用一组<strong>地址连续</strong>的存储单元依次存储线性表中的数据元素，从而使<strong>逻辑上相邻</strong>的两个元素在<strong>物理位置上也相邻</strong>。</li>
+</ul>
+<p>3.若线性表最常用的操作是存取第i个元素及其前驱和后继元素的值，为了提高效率，应采用<strong>顺序表</strong>的存储方式。</p>
+<ul>
+<li>题目要求是最快存取第i-1，i，i+1个元素值，故采用顺序表，随机存取。</li>
+<li>线性表不等同与链表，它可分为顺序存储和链式存储。</li>
+</ul>
+<p>4.当循环双链表为空表时，其头节点的prior域和next域都等于L。</p>
+<p>5.顺序存储结构和链式存储结构优点</p>
+<ul>
+<li>顺序存储结构既能随机存取又能顺序存取，而链式结构只能进行顺序存取。</li>
+<li>链式存储用指针表示逻辑结构，而指针的设置是任意的，故可以很方便的表示各种逻辑结构</li>
+<li>顺序存储只能用物理上的邻接关系来表示逻辑结构</li>
+</ul>
+<p>6.顺序存储方式不只用于存储线性结构，同样适用于图和树</p>
+<p>7.静态链表需要分配较大的连续空间，插入和删除不需要移动元素</p>
+<p>8.不管带不带头结点，头指针都始终指向链表的第一个结点，而头结点是带头结点的链表中的第一个结点，结点内通常不存储信息。<strong>头指针一定存在</strong>，<strong><u>带尾指针不意味其没有头指针</u></strong>。</p>
+<p>9.单链表<strong>删除所有值为x的元素</strong>要比顺序表的效率高。(顺序表需要移动大量元素)</p>
+<p>10.给定有n个元素的一维数组，建立一个有序单链表的最低时间复杂度是O($$nlog_2n$$).。即先排序再插入</p>
+<p>11.为了插入和删除数据，可以采用双链表存取数据</p>
+<p>12.若设有尾指针r，则执行(删除单链表中的最后一个元素)操作与链表的表长有关。(因为删除后，需要从头遍历到最后一个元素，设立尾指针)</p>
+<p>13.循环单链表求表长时 它可能会绕，比如只有一个头结点，它next的next还是它。</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">至安</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/10/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/">http://example.com/2022/10/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">从前慢</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/any1.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/10/01/%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"><img class="prev-cover" src="/img/any2.webp" onerror="onerror=null;src='/img/any3.webp'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">第三章查漏补缺</div></div></a></div><div class="next-post pull-right"><a href="/2022/10/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E7%AB%A0/"><img class="next-cover" src="/img/%E7%A7%92%E9%80%9F%E4%BA%94%E5%8E%98%E7%B1%B3.jpg" onerror="onerror=null;src='/img/any3.webp'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">数据结构第三章</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/u.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">至安</div><div class="author-info__description">至安，你抵达安宁了吗？</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ZHIAN"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ZHIAN" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2981115824@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://pic1.zhimg.com/v2-094497df7b05d6db0e7da8c808384fe4_r.jpg" target="_blank" title="picture"><i class="fa-solid fa-image"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">hello</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/01/%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/" title="第三章查漏补缺"><img src="/img/any2.webp" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="第三章查漏补缺"/></a><div class="content"><a class="title" href="/2022/10/01/%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/" title="第三章查漏补缺">第三章查漏补缺</a><time datetime="2022-10-01T12:21:58.000Z" title="发表于 2022-10-01 20:21:58">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/" title="第二章查漏补缺"><img src="/img/any1.webp" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="第二章查漏补缺"/></a><div class="content"><a class="title" href="/2022/10/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/" title="第二章查漏补缺">第二章查漏补缺</a><time datetime="2022-10-01T12:20:47.000Z" title="发表于 2022-10-01 20:20:47">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E7%AB%A0/" title="数据结构第三章"><img src="/img/%E7%A7%92%E9%80%9F%E4%BA%94%E5%8E%98%E7%B1%B3.jpg" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="数据结构第三章"/></a><div class="content"><a class="title" href="/2022/10/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E7%AB%A0/" title="数据结构第三章">数据结构第三章</a><time datetime="2022-10-01T12:06:13.000Z" title="发表于 2022-10-01 20:06:13">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/25/%E7%AC%AC%E5%9B%9B%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第四周复盘"><img src="/img/u.jpg" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="第四周复盘"/></a><div class="content"><a class="title" href="/2022/09/25/%E7%AC%AC%E5%9B%9B%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第四周复盘">第四周复盘</a><time datetime="2022-09-25T12:29:03.000Z" title="发表于 2022-09-25 20:29:03">2022-09-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/19/%E7%AC%AC%E4%B8%89%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第三周复盘"><img src="/img/web1.png" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="第三周复盘"/></a><div class="content"><a class="title" href="/2022/09/19/%E7%AC%AC%E4%B8%89%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第三周复盘">第三周复盘</a><time datetime="2022-09-19T05:57:56.000Z" title="发表于 2022-09-19 13:57:56">2022-09-19</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/any1.webp')"><div id="footer-wrap"><div class="copyright">&copy;2022 By 至安</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script src="xxxx"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
