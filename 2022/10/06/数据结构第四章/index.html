@@ -1,0 +1,452 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>数据结构第四章 | 从前慢</title><meta name="keywords" content="数据结构"><meta name="author" content="至安"><meta name="copyright" content="至安"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第四章串 定义与基本操作 (不考)   顺序存储 定义 &#x2F;&#x2F;静态存储#define MAXLEN 255 &#x2F;&#x2F; 预定义最大串长255typedef struct &amp;#123;    char ch[MAXLEN]; &#x2F;&#x2F; 每个分量存储一个字符,下标由一开始，方便操作    int  length;    &#x2F;&#x2F;  串的实际长度&amp;#125;SString;&#x2F;&#x2F;动态存储typedef struct &amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构第四章">
+<meta property="og:url" content="http://example.com/2022/10/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%9B%9B%E7%AB%A0/index.html">
+<meta property="og:site_name" content="从前慢">
+<meta property="og:description" content="第四章串 定义与基本操作 (不考)   顺序存储 定义 &#x2F;&#x2F;静态存储#define MAXLEN 255 &#x2F;&#x2F; 预定义最大串长255typedef struct &amp;#123;    char ch[MAXLEN]; &#x2F;&#x2F; 每个分量存储一个字符,下标由一开始，方便操作    int  length;    &#x2F;&#x2F;  串的实际长度&amp;#125;SString;&#x2F;&#x2F;动态存储typedef struct &amp;#">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/%E7%A7%92%E9%80%9F%E4%BA%94%E5%8E%98%E7%B1%B3.jpg">
+<meta property="article:published_time" content="2022-10-06T07:03:52.000Z">
+<meta property="article:modified_time" content="2022-10-06T07:09:02.856Z">
+<meta property="article:author" content="至安">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/%E7%A7%92%E9%80%9F%E4%BA%94%E5%8E%98%E7%B1%B3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/10/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%9B%9B%E7%AB%A0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 至安","link":"链接: ","source":"来源: 从前慢","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '数据结构第四章',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-06 15:09:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/css/custom1.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/u.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/%E7%A7%92%E9%80%9F%E4%BA%94%E5%8E%98%E7%B1%B3.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">从前慢</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/movie/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">数据结构第四章</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-06T07:03:52.000Z" title="发表于 2022-10-06 15:03:52">2022-10-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-06T07:09:02.856Z" title="更新于 2022-10-06 15:09:02">2022-10-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%80%83%E7%A0%94/">考研</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="数据结构第四章"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>第四章串</h1>
+<h2 id="定义与基本操作">定义与基本操作</h2>
+<p><s>(不考)</s></p>
+<p><img src="/img/DS.4.1.png" alt="DS.4.1"></p>
+<p><img src="/img/DS.4.2.png" alt="DS.4.2"></p>
+<h3 id="顺序存储">顺序存储</h3>
+<h4 id="定义">定义</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//静态存储</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAXLEN 255 <span class="hljs-comment">// 预定义最大串长255</span></span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>    <span class="hljs-type">char</span> ch[MAXLEN]; <span class="hljs-comment">// 每个分量存储一个字符,下标由一开始，方便操作</span><br>    <span class="hljs-type">int</span>  length;    <span class="hljs-comment">//  串的实际长度</span><br>&#125;SString;<br><br><span class="hljs-comment">//动态存储</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>    <span class="hljs-type">char</span> *ch;<br>    <span class="hljs-type">int</span> length;<br>&#125;HString;<br>HSting S;<br>S.ch = (<span class="hljs-type">char</span>*)<span class="hljs-built_in">malloc</span>(MAXLEN * <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">char</span>));<br>S.length = <span class="hljs-number">0</span>;<br></code></pre></td></tr></table></figure>
+<h4 id="赋值">赋值</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//赋值操作。把串T赋值为chars</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">StrAssign</span><span class="hljs-params">(SString &amp;T, SString chars)</span><br>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= T.length; i++)<br>    &#123;<br>        chars.ch[i] = T.ch[i];<br>    &#125;<br>    chars.length = T.length;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="复制">复制</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//复制操作。由串S复制得到串T.</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">StrCopy</span><span class="hljs-params">(SString &amp;T,SString S)</span><br>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= S.length; i++)<br>    &#123;<br>        T.ch[i] = S.ch[i];<br>    &#125;<br>    T.length = S.length;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="判空">判空</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//判空操作。若S为空串，则返回TRUE，否则返回FALSE</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">StrEmpty</span><span class="hljs-params">(SString S)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(S.length == <span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="求串长">求串长</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//求串长。返回串S的元素个数。</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">StrLength</span><span class="hljs-params">(SString S)</span><br>&#123;<br>    <span class="hljs-keyword">return</span> S.length;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="清空">清空</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//清空操作。将S清为空串</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">ClearString</span><span class="hljs-params">(SString &amp;S)</span><br>&#123;<br>    S.length = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="串连接">串连接</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//串连接。用T返回由S1和S2连接而成的新串</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">Concat</span><span class="hljs-params">(SString &amp;T,SString S1,SString S2)</span><br>&#123;<br>     <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= S1.length; i++)<br>     &#123;<br>         T.ch[i] = S1.ch[i];<br>     &#125;<br>     <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= S2.length; i++)<br>     &#123;<br>         T.ch[S1.length + i] = S2.ch[i];<br>     &#125;<br>    T.length = S1.length + S2.length;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="求子串">求子串</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//求子串</span><br><span class="hljs-type">bool</span> <span class="hljs-title function_">SubString</span><span class="hljs-params">(SString &amp;Sub, SString S, <span class="hljs-type">int</span> pos, <span class="hljs-type">int</span> len)</span><br>&#123;<br>   <span class="hljs-keyword">if</span>(pos + len - <span class="hljs-number">1</span>&gt; S.length)<br>       <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>   <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = pos; i &lt; pos + len; i++)<br>   &#123;<br>       Sub.ch[i - pos + <span class="hljs-number">1</span>] = S.ch[i];<br>   &#125;<br>   Sub.length = len;<br>   <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="比较">比较</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//比较. 若S&gt;T，则返回》0； 若S=T，则返回=0；若S&lt;T，则返回《0.</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">StrCompare</span><span class="hljs-params">(SString S, SString T)</span><br>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= S.length &amp;&amp; i &lt;= T.length; i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(S.ch[i] != T.ch[i])<br>            <span class="hljs-keyword">return</span> S.ch[i] - T.ch[i];<br>    &#125;<br>    <span class="hljs-keyword">return</span> S.length - T.length;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="定位">定位</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//定位。若主串S中存在与串T值相同的子串，则返回它在主串S中第一次出现的位置；否则函数值为0.</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">Index</span><span class="hljs-params">(SString S, SString T)</span><br>&#123;<br>     <span class="hljs-type">int</span> i = <span class="hljs-number">1</span>, n = StrLength(S), m = StrLength(T);<br>     SString sub;<br>     <span class="hljs-keyword">while</span>(i &lt;= n - m + <span class="hljs-number">1</span>) <span class="hljs-comment">// i-m+1&lt;=n</span><br>     &#123;<br>         SubString(sub, S, i, m);<br>         <span class="hljs-keyword">if</span>(StrCompare(sub, T) != <span class="hljs-number">0</span>) ++i;<br>         <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> i; <span class="hljs-comment">// 返回字串在主串中的位置</span><br>     &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <span class="hljs-comment">//S中不存在与T相等的字串</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="链式存储">链式存储</h3>
+<h4 id="定义-2">定义</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">StringNode</span> &#123;</span><br>    <span class="hljs-type">char</span> ch; <span class="hljs-comment">//每个节点只存一个字符</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">StringNode</span> *<span class="hljs-title">next</span>;</span><br>&#125;StringNode, *String;<br></code></pre></td></tr></table></figure>
+<p>❗❗存储密度低：每个字符1B，每个指针4B</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">StringNode</span> &#123;</span><br>    <span class="hljs-type">char</span> ch[<span class="hljs-number">4</span>]; <span class="hljs-comment">//每个节点多存字符</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">StringNode</span> *<span class="hljs-title">next</span>;</span><br>&#125;StringNode, *String;<br></code></pre></td></tr></table></figure>
+<h2 id="模式匹配">模式匹配</h2>
+<h3 id="朴素">朴素</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">Index</span><span class="hljs-params">(SString S, SString T)</span><br>&#123;   <span class="hljs-comment">// S为主串，T为模式串；</span><br>    <span class="hljs-comment">// i指向S， j指向T；</span><br>    <span class="hljs-type">int</span> i = <span class="hljs-number">1</span>, j = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(i &lt;= S.length &amp;&amp; j &lt;= T.length) <br>    &#123;<br>        <span class="hljs-keyword">if</span>(S.ch[i] == T.ch[j])<br>        &#123;   <span class="hljs-comment">//匹配成功，继续匹配</span><br>            i++, j++;   <br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;   <span class="hljs-comment">//匹配失败，主串i回溯，模式串从1开始</span><br>            i = i - j + <span class="hljs-number">2</span>;<br>            j = <span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(j &gt; T.length)<br>        <span class="hljs-keyword">return</span> i - T.length;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>❗❗时间复杂度</p>
+<ul>
+<li>主串长度为n, 模式串长度为m。</li>
+<li>最坏时间复杂度为:每个子串都要对比m个字符，共<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mi>m</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-m+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>个子串，复杂度为O((n-m+1)m) = O(n*m)</li>
+</ul>
+<h3 id="KMP">KMP</h3>
+<h4 id="Partial-Match-（匹配表）">Partial Match （匹配表）</h4>
+<ul>
+<li>PM表算的是字符串的前缀和后缀的最长相等前后缀长度</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>a</td>
+<td>c</td>
+</tr>
+<tr>
+<td>PM</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<pre><code>         *          ❗❗**如果已匹配相等序列中存在最大相等前后缀(即首尾重合)，那么将子串向右滑动到和该相等前后缀对齐**(&lt;u&gt;理解关键&lt;/u&gt;)
+         *          当模式串与主串不匹配时，只需移动模式串即可
+         *          右移位数 = 已匹配的字符数 - 对应的部分匹配值
+         *          move = (j - 1) - PM[j - 1]
+</code></pre>
+<h4 id="对PM改进（next-1-）">对PM改进（next[-1]）</h4>
+<pre><code>    *  使用部分匹配值时，每当匹配失败，就去找它前一个元素的部分匹配值，这样使用起来不方便，所以将PM表右移一位，这样哪个元素匹配失败，直接看它自己的部分匹配值
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>a</td>
+<td>c</td>
+</tr>
+<tr>
+<td>next</td>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>把PM改成了next</li>
+<li>右移以后第一个元素空缺，用-1填充。因为若是第一个元素匹配失败，则需将子串(模式串)右移一位**(move = 0 - (-1) = 1)**</li>
+<li>最后一个元素在右移过程中溢出，因为最后一个元素的匹配值是其下一个元素使用的，但显然已没有下一个元素，故舍去</li>
+</ul>
+<h4 id="最终改进-next-0">最终改进(next[0])</h4>
+<ul>
+<li>由上表可知 <strong>Move = (j - 1) - next[j]</strong>, 相当于子串的比较指针j回退到                j = j - move = j - ((j - 1) - next[j]) = next[j] + 1</li>
+<li>因此为了计算方便，将<strong>上表next数组</strong>整体+1</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>a</td>
+<td>c</td>
+</tr>
+<tr>
+<td>next</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>最终得到指针变化公式 <strong>j = next[j]</strong></li>
+<li>next[j] 的含义：<strong>在子串的第j个字符与主串发生失配时，则跳到子串的next[j]位置重新与主串当前位置进行比较</strong></li>
+</ul>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>e</mi><mi>x</mi><mi>t</mi><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>:</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>0</mn><mo separator="true">,</mo><mi>j</mi><mo>=</mo><mn>1</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>m</mi><mi>a</mi><mi>x</mi><mrow><mi>k</mi><mi mathvariant="normal">∣</mi><mn>1</mn><mo>&lt;</mo><mi>k</mi><mo>&lt;</mo><mi>j</mi><msup><mtext>且</mtext><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><msub><mi>p</mi><mn>1</mn></msub><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><msubsup><mi>p</mi><mi>k</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><msup><mo>=</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><msub><mi>p</mi><mi>j</mi></msub><mo>−</mo><mi>k</mi><mo>+</mo><mn>1</mn><msub><mi>p</mi><mi>j</mi></msub><mo>−</mo><msup><mn>1</mn><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><mo separator="true">,</mo><mtext>当集合不空时</mtext></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>1</mn><mo separator="true">,</mo><mtext>其他情况</mtext></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">next[j] :\begin{cases} 0,     j = 1\\ max {k| 1 &lt; k &lt; j且&#x27;p_1...p_k&#x27;=&#x27;p_j-k+1p_j-1&#x27;},当集合不空时\\ 1, 其他情况\end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span class="mord mathnormal">t</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:4.32em;vertical-align:-1.91em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.35em;"><span style="top:-2.2em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎩</span></span></span><span style="top:-2.192em;"><span class="pstrut" style="height:3.15em;"></span><span style="height:0.316em;width:0.8889em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.8889em' height='0.316em' style='width:0.8889em' viewBox='0 0 888.89 316' preserveAspectRatio='xMinYMin'><path d='M384 0 H504 V316 H384z M384 0 H504 V316 H384z'/></svg></span></span><span style="top:-3.15em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎨</span></span></span><span style="top:-4.292em;"><span class="pstrut" style="height:3.15em;"></span><span style="height:0.316em;width:0.8889em;"><svg xmlns="http://www.w3.org/2000/svg" width='0.8889em' height='0.316em' style='width:0.8889em' viewBox='0 0 888.89 316' preserveAspectRatio='xMinYMin'><path d='M384 0 H504 V316 H384z M384 0 H504 V316 H384z'/></svg></span></span><span style="top:-4.6em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎧</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.85em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.41em;"><span style="top:-4.41em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">1</span></span></span><span style="top:-2.97em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal">ma</span><span class="mord mathnormal">x</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord">∣1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mord"><span class="mord cjk_fallback">且</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">...</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-2.4169em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2831em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel">=</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord cjk_fallback">当集合不空时</span></span></span><span style="top:-1.53em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord cjk_fallback">其他情况</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.91em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<h4 id="计算next-机算">计算next[] (机算)</h4>
+<p><img src="/img/DS.4.3.png" alt="DS.4.3"></p>
+<p>此时next[j]值为t,据此可以分两种情况来推导next[j+1]的值:</p>
+<p>(1)若<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">P_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> = <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">P_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>,则next[j+1] = t+1= next[i]+1;</p>
+<p>(2)若<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">P_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> ≠<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">P_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>,则循环的将t赋值为next[t]，直到t =0或者满足(1)为止，当t =0时, next[j+1]= 1。</p>
+<ul>
+<li>
+<p>对(2)进行补充，当<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">P_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> ≠<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">P_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，但’<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mn>1</mn></msub><msub><mi>P</mi><mn>2</mn></msub><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><msub><mi>P</mi><mi>t</mi></msub><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">P_1P_2...P_t-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">...</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>’ 和’<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>j</mi></msub><mo>−</mo><mi>t</mi><mo>+</mo><mn>1...</mn><msub><mi>P</mi><mi>j</mi></msub><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">P_j-t+1...P_j-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6984em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord">1...</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>’</p>
+<p>这就等价于用下串去匹配上串，即下串P[t]的下标t = next[t];</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">get_next</span><span class="hljs-params">(String T, <span class="hljs-type">int</span> next[])</span><br>&#123;<br><span class="hljs-comment">//    for(int i = 1; i &lt;= T.length; i++)</span><br><span class="hljs-comment">//        printf(&quot;%c &quot;, T.ch[i]);</span><br><span class="hljs-comment">//    printf(&quot;\n&quot;);</span><br>    <span class="hljs-type">int</span> j = <span class="hljs-number">1</span>, t = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//   j    t</span><br>    next[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (j &lt; T.length)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (t == <span class="hljs-number">0</span> || T.ch[j] == T.ch[t])<br>        &#123;   <span class="hljs-comment">//如果T.ch[j] == T.ch[t]，即第一种情况</span><br>            next[j + <span class="hljs-number">1</span>] = t + <span class="hljs-number">1</span>;<br>            ++j;<br>            ++t;<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>            t = next[t];<br>    &#125;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= T.length; i++)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, next[i]);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="KMP代码">KMP代码</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">Index_KMP</span><span class="hljs-params">(String S, String T, <span class="hljs-type">int</span> next[])</span><br>&#123;   <span class="hljs-comment">// S为主串，T为模式串；</span><br>    <span class="hljs-comment">// i指向S， j指向T；</span><br>    <span class="hljs-type">int</span> i = <span class="hljs-number">1</span>, j = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(i &lt;= S.length &amp;&amp; j &lt;= T.length)<br>    &#123;   <span class="hljs-comment">//当 j = 0时，i++表示主串右移， 然后j++表示j=1,重新指向模式串的第一个字符</span><br>        <span class="hljs-keyword">if</span>(j == <span class="hljs-number">0</span> || S.ch[i] == T.ch[j])<br>        &#123;   <span class="hljs-comment">//匹配成功，继续匹配</span><br>            i++, j++;<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;   <span class="hljs-comment">//匹配失败，模式串j回溯</span><br>            j = next[j];<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(j &gt; T.length) <span class="hljs-comment">//匹配成功</span><br>        <span class="hljs-keyword">return</span> i - T.length;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>❗<strong>当 j = 0时，i++表示主串右移， 然后j++表示j=1,重新指向模式串的第一个字符</strong>❗</p>
+<p>❗❗❗时间复杂度</p>
+<p>​      主串长度为n, 模式串长度为m;</p>
+<ul>
+<li>求next数组的时间复杂度为O(m)</li>
+<li>模式匹配过程中最坏时间复杂度O(n), 匹配到尽头</li>
+<li>最坏时间复杂度为O(m+n)</li>
+</ul>
+<h4 id="优化KMP（nextval-）">优化KMP（nextval[]）</h4>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">get_nextval</span><span class="hljs-params">(String T, <span class="hljs-type">int</span> nextval[])</span><br>&#123;<br>    <span class="hljs-type">int</span> j = <span class="hljs-number">1</span>, t = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//   j    t</span><br>    nextval[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (j &lt; T.length)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (t == <span class="hljs-number">0</span> || T.ch[j] == T.ch[t])<br>        &#123;   <span class="hljs-comment">//如果T.ch[j] ！= T.ch[t]，不用往前回溯</span><br>            <span class="hljs-keyword">if</span>(T.ch[j + <span class="hljs-number">1</span>] != T.ch[t + <span class="hljs-number">1</span>])<br>                nextval[j + <span class="hljs-number">1</span>] = t + <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">else</span><br>                nextval[j+<span class="hljs-number">1</span>] = nextval[t+<span class="hljs-number">1</span>];<br>            ++j;<br>            ++t;<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>            t = nextval[t];<br>&#125;<br></code></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">至安</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/10/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%9B%9B%E7%AB%A0/">http://example.com/2022/10/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%9B%9B%E7%AB%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">从前慢</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div><div class="post_share"><div class="social-share" data-image="/img/%E7%A7%92%E9%80%9F%E4%BA%94%E5%8E%98%E7%B1%B3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/10/06/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"><img class="prev-cover" src="/img/any1.webp" onerror="onerror=null;src='/img/any3.webp'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">第四章查漏补缺</div></div></a></div><div class="next-post pull-right"><a href="/2022/10/01/%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"><img class="next-cover" src="/img/any2.webp" onerror="onerror=null;src='/img/any3.webp'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">第三章查漏补缺</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/09/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="数据结构第二章"><img class="cover" src="/img/sea1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-16</div><div class="title">数据结构第二章</div></div></a></div><div><a href="/2022/10/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E7%AB%A0/" title="数据结构第三章"><img class="cover" src="/img/%E7%A7%92%E9%80%9F%E4%BA%94%E5%8E%98%E7%B1%B3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-01</div><div class="title">数据结构第三章</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/u.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">至安</div><div class="author-info__description">至安，你抵达安宁了吗？</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ZHIAN"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ZHIAN" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2981115824@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://pic1.zhimg.com/v2-094497df7b05d6db0e7da8c808384fe4_r.jpg" target="_blank" title="picture"><i class="fa-solid fa-image"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">hello</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">第四章串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text">定义与基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8"><span class="toc-number">1.1.1.</span> <span class="toc-text">顺序存储</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">赋值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">复制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E7%A9%BA"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">判空</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B1%82%E4%B8%B2%E9%95%BF"><span class="toc-number">1.1.1.5.</span> <span class="toc-text">求串长</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%85%E7%A9%BA"><span class="toc-number">1.1.1.6.</span> <span class="toc-text">清空</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%B2%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.1.1.7.</span> <span class="toc-text">串连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B1%82%E5%AD%90%E4%B8%B2"><span class="toc-number">1.1.1.8.</span> <span class="toc-text">求子串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AF%94%E8%BE%83"><span class="toc-number">1.1.1.9.</span> <span class="toc-text">比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D"><span class="toc-number">1.1.1.10.</span> <span class="toc-text">定位</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">链式存储</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-2"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">定义</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="toc-number">1.2.</span> <span class="toc-text">模式匹配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%B4%E7%B4%A0"><span class="toc-number">1.2.1.</span> <span class="toc-text">朴素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KMP"><span class="toc-number">1.2.2.</span> <span class="toc-text">KMP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Partial-Match-%EF%BC%88%E5%8C%B9%E9%85%8D%E8%A1%A8%EF%BC%89"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Partial Match （匹配表）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9PM%E6%94%B9%E8%BF%9B%EF%BC%88next-1-%EF%BC%89"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">对PM改进（next[-1]）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E6%94%B9%E8%BF%9B-next-0"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">最终改进(next[0])</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97next-%E6%9C%BA%E7%AE%97"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">计算next[] (机算)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#KMP%E4%BB%A3%E7%A0%81"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">KMP代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8C%96KMP%EF%BC%88nextval-%EF%BC%89"><span class="toc-number">1.2.2.6.</span> <span class="toc-text">优化KMP（nextval[]）</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/06/%E7%AC%AC%E4%BA%94%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第五周复盘"><img src="/img/any2.webp" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="第五周复盘"/></a><div class="content"><a class="title" href="/2022/10/06/%E7%AC%AC%E4%BA%94%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第五周复盘">第五周复盘</a><time datetime="2022-10-06T07:10:46.000Z" title="发表于 2022-10-06 15:10:46">2022-10-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/06/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/" title="第四章查漏补缺"><img src="/img/any1.webp" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="第四章查漏补缺"/></a><div class="content"><a class="title" href="/2022/10/06/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/" title="第四章查漏补缺">第四章查漏补缺</a><time datetime="2022-10-06T07:06:08.000Z" title="发表于 2022-10-06 15:06:08">2022-10-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%9B%9B%E7%AB%A0/" title="数据结构第四章"><img src="/img/%E7%A7%92%E9%80%9F%E4%BA%94%E5%8E%98%E7%B1%B3.jpg" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="数据结构第四章"/></a><div class="content"><a class="title" href="/2022/10/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%9B%9B%E7%AB%A0/" title="数据结构第四章">数据结构第四章</a><time datetime="2022-10-06T07:03:52.000Z" title="发表于 2022-10-06 15:03:52">2022-10-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/01/%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/" title="第三章查漏补缺"><img src="/img/any2.webp" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="第三章查漏补缺"/></a><div class="content"><a class="title" href="/2022/10/01/%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/" title="第三章查漏补缺">第三章查漏补缺</a><time datetime="2022-10-01T12:21:58.000Z" title="发表于 2022-10-01 20:21:58">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/" title="第二章查漏补缺"><img src="/img/any1.webp" onerror="this.onerror=null;this.src='/img/any3.webp'" alt="第二章查漏补缺"/></a><div class="content"><a class="title" href="/2022/10/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/" title="第二章查漏补缺">第二章查漏补缺</a><time datetime="2022-10-01T12:20:47.000Z" title="发表于 2022-10-01 20:20:47">2022-10-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/%E7%A7%92%E9%80%9F%E4%BA%94%E5%8E%98%E7%B1%B3.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 By 至安</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script src="xxxx"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
